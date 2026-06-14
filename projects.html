@@ -118,11 +118,19 @@
       display: grid; grid-template-columns: 1fr; gap: 2rem; padding: 2rem;
     }
     @media (min-width: 768px) {
-      .project-detail-header { grid-template-columns: 400px 1fr; }
+      .project-detail-header { grid-template-columns: 350px 1fr; }
     }
     .project-detail-img {
-      width: 100%; border-radius: 8px;
+      width: 100%; height: 250px; object-fit: cover; border-radius: 8px;
       filter: brightness(.9) saturate(.9);
+    }
+    @media (max-width: 767px) {
+      .project-detail-img {
+        height: 180px;
+      }
+      .project-detail-header {
+        padding: 1.2rem;
+      }
     }
     .project-detail-meta h2 {
       font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;
@@ -203,6 +211,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="projects.html" class="active">Projects</a></li>
       <li><a href="education.html">Education</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
       <li><a href="achievements.html">Achievements</a></li>
     </ul>
   </div>

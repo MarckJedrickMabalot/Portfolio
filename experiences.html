@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marck Jedrick S. Mabalot — Experiences</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <link rel="icon" type="image/png" href="Assets/Images/Logo.png">
+  <style>
+    :root {
+      --bg: #060b14;
+      --surface: #0d1520;
+      --surface2: #111d2e;
+      --cyan: #00ffe7;
+      --green: #39ff6a;
+      --text: #c8d8e8;
+      --muted: #5a7080;
+      --border: rgba(0,255,231,0.12);
+      --font-display: 'Syne', sans-serif;
+      --font-mono: 'Share Tech Mono', monospace;
+    }
+    :root.light-mode {
+      --bg: #eef2f6;
+      --surface: #ffffff;
+      --surface2: #e4ebf1;
+      --cyan: #0e7490;
+      --green: #047857;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: rgba(15,23,42,0.1);
+    }
+    :root.light-mode body::before { opacity: 0.15; }
+    :root.light-mode .experience-card:hover { box-shadow: 0 10px 30px rgba(14, 116, 144, 0.15); }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-display);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: .4;
+    }
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: rgba(6,11,20,.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: .9rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .light-mode nav {
+      background: rgba(248, 250, 252, 0.9);
+    }
+    .nav-brand { display: flex; align-items: center; text-decoration: none; }
+    .nav-brand-logo {
+      height: 36px; width: auto; border-radius: 4px;
+      object-fit: contain; filter: brightness(1.15);
+    }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); font-size: .85rem; text-decoration: none;
+      letter-spacing: .08em; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-toggle { display: none; background: none; border: none; color: var(--cyan); font-size: 1.4rem; cursor: pointer; }
+    .theme-toggle {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--cyan); padding: 0.4rem 0.8rem; border-radius: 4px;
+      cursor: pointer; transition: background 0.3s, transform 0.2s;
+      font-size: 1rem;
+    }
+    .theme-toggle:hover { background: rgba(0,255,231,.08); transform: translateY(-2px); }
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(6,11,20,.97); padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; }
+      .light-mode .nav-links {
+        background: rgba(248, 250, 252, 0.97);
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+    }
+    section { padding: 5rem 1.5rem; }
+    .section-label {
+      font-family: var(--font-mono); color: var(--cyan);
+      font-size: .75rem; letter-spacing: .25em;
+      text-transform: uppercase; margin-bottom: .5rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; color: #fff; margin-bottom: 2.5rem;
+    }
+    .light-mode .section-title {
+      color: #1e293b;
+    }
+    .light-mode .experience-title {
+      color: #1e293b;
+    }
+    .experiences-container {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 2rem;
+    }
+    .experience-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--cyan);
+      border-radius: 0 12px 12px 0;
+      padding: 2rem;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .experience-card:hover {
+      transform: translateX(6px);
+      box-shadow: -4px 0 30px rgba(0,255,231,.15);
+    }
+    .experience-header {
+      display: flex; gap: 1.5rem; align-items: start; flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .experience-icon {
+      width: 60px; height: 60px; border-radius: 12px;
+      background: var(--surface2); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .experience-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      padding: 6px;
+    }
+    .experience-title {
+      font-size: 1.5rem; font-weight: 800; color: #fff;
+    }
+    .experience-company {
+      color: var(--cyan); font-family: var(--font-mono);
+      font-size: .9rem; margin: .3rem 0 .8rem;
+    }
+    .experience-date {
+      color: var(--muted); font-family: var(--font-mono);
+      font-size: .8rem; margin-bottom: 1rem;
+    }
+    .experience-details {
+      color: var(--text); line-height: 1.9;
+    }
+    .experience-details ul {
+      padding-left: 1.5rem; margin-top: .7rem;
+    }
+    .experience-details li {
+      margin-bottom: .5rem;
+    }
+    .experience-carousel {
+      margin-top: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .experience-carousel .carousel-item {
+      height: 350px;
+      background-color: var(--surface2);
+    }
+    .experience-carousel .carousel-item.active,
+    .experience-carousel .carousel-item-next,
+    .experience-carousel .carousel-item-prev {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .experience-carousel .carousel-item img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
+    .experience-carousel .carousel-control-prev,
+    .experience-carousel .carousel-control-next {
+      z-index: 10;
+    }
+    @media (max-width: 767px) {
+      .experience-carousel .carousel-item {
+        height: 220px;
+        background-color: var(--surface2);
+      }
+      .experience-carousel .carousel-item.active,
+      .experience-carousel .carousel-item-next,
+      .experience-carousel .carousel-item-prev {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .experience-carousel .carousel-item img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+      }
+      .experience-card {
+        padding: 1.5rem;
+      }
+      .experience-title {
+        font-size: 1.2rem;
+      }
+    }
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    footer p { color: var(--muted); font-family: var(--font-mono); font-size: .78rem; }
+    footer a { color: var(--cyan); text-decoration: none; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 3px; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-brand">
+    <img src="Assets/Images/Logo.png" alt="Logo" class="nav-brand-logo"/>
+  </a>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle"><i class="bi bi-moon"></i></button>
+    <button class="nav-toggle" id="navToggle"><i class="bi bi-list"></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="experiences.html" class="active">Experiences</a></li>
+      <li><a href="achievements.html">Achievements</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="experiences-page" style="padding-top: 8rem;">
+  <div class="container">
+    <p class="section-label reveal">01 // Experiences</p>
+    <h2 class="section-title reveal">My Professional Journey</h2>
+    <div class="experiences-container">
+      
+      <!-- Experience 1 -->
+      <div class="experience-card reveal">
+        <div class="experience-header">
+          <div class="experience-icon">
+            <img src="Assets/Images/ERC.png" alt="ERC Logo">
+          </div>
+          <div>
+            <h3 class="experience-title">Head of Educational & Research Committee</h3>
+            <p class="experience-company">Computer Society - PUP Sto. Tomas Campus</p>
+            <p class="experience-date">2025 - 2026</p>
+          </div>
+        </div>
+        <div class="experience-details">
+          <ul>
+            <li>Led and coordinated educational and technology-focused initiatives for BSIT students</li>
+            <li>Organized "From Algorithms to Intelligence" - a seminar on AI systems and machine learning</li>
+            <li>Organized "Ctrl+Alt+Lead: Project Management for the IT Generation" - a seminar on modern software testing</li>
+            <li>Organized "EduCTF: 2026 COMSOC Hacking Competition" - a school-wide cybersecurity event</li>
+            <li>Collaborated with officers, speakers, and committees for successful event execution</li>
+          </ul>
+        </div>
+        <div class="experience-carousel">
+          <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="Assets/Images/erc2.jpg" class="d-block w-100" alt="Event 1">
+              </div>
+              <div class="carousel-item">
+                <img src="Assets/Images/erc3.jpg" class="d-block w-100" alt="Event 2">
+              </div>
+              <div class="carousel-item">
+                <img src="Assets/Images/erc1.jpg" class="d-block w-100" alt="Event 3">
+              </div>
+              <div class="carousel-item">
+                <img src="Assets/Images/From-Algo-Sem.jpg" class="d-block w-100" alt="Event 3">
+              </div>
+              <div class="carousel-item">
+                <img src="Assets/Images/erc5.jpg" class="d-block w-100" alt="Event 3">
+              </div>
+              <div class="carousel-item">
+                <img src="Assets/Images/EduCTF.jpg" class="d-block w-100" alt="Event 3">
+              </div>
+              <div class="carousel-item">
+                <img src="Assets/Images/ctrl-alt-leadsem.jpg" class="d-block w-100" alt="Event 3">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience 2 -->
+      <div class="experience-card reveal">
+        <div class="experience-header">
+          <div class="experience-icon">
+            <img src="Assets/Images/LIQ.jpg" alt="LIQ Logo">
+          </div>
+          <div>
+            <h3 class="experience-title">Co-Founder / Head Developer / Project Manager</h3>
+            <p class="experience-company">LIQ Solutions (Startup)</p>
+            <p class="experience-date">2025 - Present</p>
+          </div>
+        </div>
+        <div class="experience-details">
+          <ul>
+            <li>Leading development planning and project coordination</li>
+            <li>Designing and managing system workflows</li>
+            <li>Collaborating with developers and designers</li>
+            <li>Creating wireframes and project prototypes</li>
+            <li>Managing timelines and technical documentation</li>
+          </ul>
+        </div>
+        <div class="experience-carousel">
+          <div id="carousel2" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="Assets/Images/LIQ.jpg" class="d-block w-100" alt="LIQ 1">
+              </div>
+              <div class="carousel-item">
+                <img src="Assets/Images/liq1.png" class="d-block w-100" alt="LIQ 2">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience 3 -->
+      <div class="experience-card reveal">
+        <div class="experience-header">
+          <div class="experience-icon">
+            <img src="Assets/Images/MgaApoNiTomasLogo.jpg" alt="Mga Apo ni Tomas Logo">
+          </div>
+          <div>
+            <h3 class="experience-title">President</h3>
+            <p class="experience-company">Mga Apo ni Tomas Youth Organization</p>
+            <p class="experience-date">2024 - Present</p>
+          </div>
+        </div>
+        <div class="experience-details">
+          <ul>
+            <li>Drafted and organized bylaws for the organization</li>
+            <li>Led events and created accomplishment reports</li>
+          </ul>
+        </div>
+        <div class="experience-carousel">
+          <div id="carousel3" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="Assets/Images/mant1.jpeg" class="d-block w-100" alt="Org 1">
+              </div>
+              <div class="carousel-item">
+                <img src="Assets/Images/mant2.jpeg" class="d-block w-100" alt="Org 2">
+              </div>
+              <div class="carousel-item">
+                <img src="Assets/Images/mant3.jpg" class="d-block w-100" alt="Org 3">
+              </div>
+              <div class="carousel-item">
+                <img src="Assets/Images/mant4.jpeg" class="d-block w-100" alt="Org 3">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel3" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel3" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience 4 -->
+      <div class="experience-card reveal">
+        <div class="experience-header">
+          <div class="experience-icon">
+            <img src="Assets/Images/jolibeelogo.png" alt="Jollibee Logo">
+          </div>
+          <div>
+            <h3 class="experience-title">Crew Counter and Drivethru Station</h3>
+            <p class="experience-company">Jollibee</p>
+            <p class="experience-date">2024 - 2025</p>
+          </div>
+        </div>
+        <div class="experience-details">
+          <ul>
+            <li>Won Best Counter September 17, 2024</li>
+            <li>Won Best Counter January 8, 2025</li>
+          </ul>
+        </div>
+        <div class="experience-carousel">
+          <div id="carousel4" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="Assets/Images/jb1.jpg" class="d-block w-100" alt="Jollibee 1">
+              </div>
+              <div class="carousel-item">
+                <img src="Assets/Images/BestCounterSept.jpg" class="d-block w-100" alt="Jollibee 2">
+              </div>
+              <div class="carousel-item">
+                <img src="Assets/Images/BestCounterJan.jpg" class="d-block w-100" alt="Jollibee 3">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel4" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel4" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & Built by <a href="index.html">Marck Jedrick S. Mabalot</a></p>
+  <p style="margin-top:.4rem;">mabalotmarckjedrick@gmail.com</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Theme Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('portfolioTheme');
+  if (savedTheme) {
+    document.documentElement.classList.add(savedTheme);
+    updateThemeIcon();
+  }
+
+  themeToggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('light-mode');
+    const isLight = document.documentElement.classList.contains('light-mode');
+    localStorage.setItem('portfolioTheme', isLight ? 'light-mode' : '');
+    updateThemeIcon();
+  });
+
+  function updateThemeIcon() {
+    themeToggle.innerHTML = document.documentElement.classList.contains('light-mode')
+      ? '<i class="bi bi-sun"></i>'
+      : '<i class="bi bi-moon"></i>';
+  }
+
+  // Navbar Toggle
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+  // Track which carousels have been initialized
+  const initializedCarousels = new Set();
+
+  function initCarouselsInCard(card) {
+    card.querySelectorAll('.carousel').forEach(el => {
+      if (!initializedCarousels.has(el.id)) {
+        initializedCarousels.add(el.id);
+        // Force a reflow so Bootstrap reads correct dimensions
+        el.style.display = 'none';
+        void el.offsetHeight;
+        el.style.display = '';
+        new bootstrap.Carousel(el, { interval: 4000, ride: 'carousel' });
+      }
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // Init any carousels inside this newly-visible element
+        initCarouselsInCard(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Also init carousels that may already be visible on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.carousel').forEach(el => {
+      if (!initializedCarousels.has(el.id)) {
+        initializedCarousels.add(el.id);
+        new bootstrap.Carousel(el, { interval: 4000, ride: 'carousel' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

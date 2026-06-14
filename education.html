@@ -124,8 +124,10 @@
     }
     .education-img {
       width: 120px; height: 120px; border-radius: 10px;
-      object-fit: cover; border: 1px solid var(--border);
+      object-fit: contain; border: 1px solid var(--border);
       cursor: pointer; transition: filter .3s;
+      background-color: var(--surface2);
+      padding: 10px;
     }
     .education-img:hover { filter: brightness(1.1); }
     .education-school {
@@ -199,6 +201,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="projects.html">Projects</a></li>
       <li><a href="education.html" class="active">Education</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
       <li><a href="achievements.html">Achievements</a></li>
     </ul>
   </div>
@@ -248,9 +251,7 @@
       <!-- College -->
       <div class="education-card reveal">
         <div class="education-header">
-          <div style="width: 120px; height: 120px; border-radius: 10px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; background: var(--surface2);">
-            <i class="bi bi-building" style="font-size: 3.5rem; color: var(--cyan);"></i>
-          </div>
+          <img src="Assets/Images/PUPLogo.png" alt="PUP Logo" class="education-img" onclick="openLightbox('Assets/Images/PUPLogo.png')"/>
           <div>
             <h3 class="education-school">Polytechnic University of the Philippines</h3>
             <p class="education-degree">Bachelor of Science in Information Technology</p>
@@ -265,16 +266,14 @@
             <ul>
               <li>COMSOC Documentation and Report Committee - Outstanding Service Awardee 2025</li>
               <li>Best Debater in Purposive Communications</li>
-              </div>
-        <div class="education-details">
-          <div>
+            </ul>
+          </div>
+          <div style="margin-top: 1.2rem;">
             <span class="grade-tag">2nd Year</span>
             <span class="grade-tag">First Sem Deans List</span>
             <span class="grade-tag">GWA 1.63</span>
             <ul>
               <li>Head of the Educational and Research Committee</li>
-            </ul>
-          </div>
             </ul>
           </div>
         </div>

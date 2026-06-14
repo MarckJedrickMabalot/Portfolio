@@ -41,6 +41,23 @@
       font-family: var(--font-display);
       overflow-x: hidden;
     }
+    @media (max-width: 767px) {
+      .achievement-img {
+        height: 170px;
+      }
+      .achievement-body {
+        padding: 1rem;
+      }
+      .achievement-name {
+        font-size: 0.9rem;
+      }
+      .achievement-result {
+        font-size: 0.75rem;
+      }
+      .achievement-icon {
+        font-size: 1.1rem;
+      }
+    }
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -109,18 +126,18 @@
     }
     .achievements-container {
       max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
     }
     .achievement-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px; overflow: hidden;
       transition: border-color .25s, transform .25s, box-shadow .25s;
-      display: flex; flex-direction: column; cursor: pointer;
+      display: flex; flex-direction: column; cursor: pointer; height: 100%;
     }
     .achievement-card:hover { border-color: var(--cyan); transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,255,231,.1); }
     .achievement-img {
-      width: 100%; height: 200px;
+      width: 100%; height: 220px;
       object-fit: cover; object-position: center;
       display: block; filter: brightness(.8) saturate(.7);
       transition: filter .3s;
@@ -173,6 +190,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="projects.html">Projects</a></li>
       <li><a href="education.html">Education</a></li>
+      <li><a href="experiences.html">Experiences</a></li>
       <li><a href="achievements.html" class="active">Achievements</a></li>
     </ul>
   </div>
