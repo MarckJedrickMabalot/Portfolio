@@ -24,6 +24,35 @@
       --font-mono: 'Share Tech Mono', monospace;
     }
 
+    :root.light-mode {
+      --bg: #eef2f6;
+      --surface: #ffffff;
+      --surface2: #e4ebf1;
+      --cyan: #0e7490;
+      --green: #047857;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: rgba(15,23,42,0.1);
+    }
+    :root.light-mode body::before { opacity: 0.15; }
+    :root.light-mode .exp-card:hover { box-shadow: 0 10px 30px rgba(14, 116, 144, 0.15); }
+    :root.light-mode .proj-card:hover { box-shadow: 0 10px 30px rgba(14, 116, 144, 0.15); }
+    :root.light-mode .comp-item:hover { box-shadow: 0 10px 30px rgba(14, 116, 144, 0.15); }
+    :root.light-mode .btn-primary-c { background: #0e7490; color: white; }
+    :root.light-mode .btn-primary-c:hover { box-shadow: 0 0 20px rgba(14, 116, 144, 0.3); }
+    :root.light-mode .hero-grid { background-image: linear-gradient(rgba(14,116,144,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(14,116,144,0.05) 1px, transparent 1px); }
+    :root.light-mode .hero-glow { background: radial-gradient(circle, rgba(14,116,144,0.08) 0%, transparent 70%); }
+    :root.light-mode nav { background: rgba(248, 250, 252, 0.9); }
+    :root.light-mode .section-title,
+    :root.light-mode .exp-role,
+    :root.light-mode .proj-title,
+    :root.light-mode .comp-name { color: #1e293b; }
+    :root.light-mode .skill-tag { background: rgba(14,116,144,.08); border-color: rgba(14,116,144,.25); }
+    :root.light-mode .skill-tag:hover { background: rgba(14,116,144,.15); }
+    :root.light-mode .exp-tag { background: rgba(16,185,129,.08); border-color: rgba(16,185,129,.25); }
+    :root.light-mode .proj-tech span { background: rgba(14,116,144,.05); }
+    :root.light-mode .lightbox { background: rgba(15, 23, 42, 0.92); }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
@@ -67,9 +96,18 @@
     }
     .nav-links a:hover { color: var(--cyan); }
     .nav-toggle { display: none; background: none; border: none; color: var(--cyan); font-size: 1.4rem; cursor: pointer; }
+    .theme-toggle {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--cyan); padding: 0.4rem 0.8rem; border-radius: 4px;
+      cursor: pointer; transition: background 0.3s, transform 0.2s;
+      font-size: 1rem;
+    }
+    .theme-toggle:hover { background: rgba(0,255,231,.08); transform: translateY(-2px); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
 
     @media (max-width: 768px) {
       .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(6,11,20,.97); padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; }
+      .light-mode .nav-links { background: rgba(248, 250, 252, 0.97); }
       .nav-links.open { display: flex; }
       .nav-toggle { display: block; }
     }
@@ -87,13 +125,31 @@
         linear-gradient(rgba(0,255,231,.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0,255,231,.04) 1px, transparent 1px);
       background-size: 60px 60px;
+      transition: transform 0.1s ease-out;
     }
     .hero-glow {
       position: absolute; top: -150px; right: -150px;
       width: 600px; height: 600px; border-radius: 50%;
       background: radial-gradient(circle, rgba(0,255,231,.08) 0%, transparent 70%);
       pointer-events: none;
+      transition: transform 0.3s ease-out;
     }
+    .hero-particles {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .particle {
+      position: absolute; width: 4px; height: 4px;
+      background: var(--cyan); border-radius: 50%; opacity: 0.3;
+      animation: float 12s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      25% { transform: translateY(-30px) translateX(20px); }
+      50% { transform: translateY(-60px) translateX(0); }
+      75% { transform: translateY(-30px) translateX(-20px); }
+    }
+
     /* Two-column hero layout */
     .hero-inner {
       position: relative; z-index: 1;
@@ -104,10 +160,15 @@
     .hero-content { flex: 1; min-width: 0; }
     .hero-photo-col {
       flex-shrink: 0;
-      animation: fadeUp .8s .3s ease both;
+      animation: fadeUp .8s .3s ease both, floatSlow 6s ease-in-out infinite;
+    }
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
     .hero-photo-wrap {
       position: relative; width: 260px; height: 320px;
+      transition: transform 0.2s ease-out;
     }
     .hero-photo-wrap::before {
       content: '';
@@ -115,6 +176,11 @@
       border-radius: 12px;
       background: linear-gradient(135deg, var(--cyan), transparent 60%);
       z-index: 0;
+      animation: pulse 2s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
     }
     .hero-photo-wrap::after {
       content: '';
@@ -129,6 +195,10 @@
       object-fit: cover; object-position: top center;
       border-radius: 10px;
       filter: brightness(.95) contrast(1.05);
+      transition: transform 0.3s ease-out;
+    }
+    .hero-photo-wrap:hover .hero-photo {
+      transform: scale(1.02);
     }
     @media (max-width: 768px) {
       .hero-inner { flex-direction: column-reverse; align-items: flex-start; gap: 2rem; }
@@ -139,15 +209,37 @@
       font-family: var(--font-mono); color: var(--cyan);
       font-size: .8rem; letter-spacing: .2em;
       margin-bottom: 1rem;
-      animation: fadeUp .6s ease both;
+      animation: fadeUp .6s ease both, typewriter 0.8s steps(15) 0.2s both;
+      overflow: hidden; white-space: nowrap;
+    }
+    @keyframes typewriter {
+      from { width: 0; }
+      to { width: 100%; }
     }
     .hero-name {
       font-size: clamp(2.4rem, 6vw, 5rem);
       font-weight: 800; line-height: 1.05;
       color: #fff;
       animation: fadeUp .7s .1s ease both;
+      -webkit-text-stroke: 1px transparent;
     }
-    .hero-name span { color: var(--cyan); }
+    .light-mode .hero-name { color: #1e293b; }
+    .hero-name span {
+      color: var(--cyan);
+      position: relative;
+      display: inline-block;
+    }
+    .hero-name span::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 3px; background: var(--cyan);
+      animation: underlineExpand 0.8s ease-out 0.6s both;
+      transform-origin: left;
+    }
+    @keyframes underlineExpand {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
     .hero-tagline {
       margin-top: 1.2rem; font-size: clamp(.88rem,2vw,1rem);
       color: var(--muted); max-width: 520px; line-height: 1.7;
@@ -164,7 +256,7 @@
       text-decoration: none; font-size: .9rem; letter-spacing: .05em;
       transition: transform .2s, box-shadow .2s;
     }
-    .btn-primary-c:hover { transform: translateY(-2px); box-shadow: 0 0 24px rgba(0,255,231,.4); color: #060b14; }
+    .btn-primary-c:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 0 30px rgba(0,255,231,.45); color: #060b14; }
     .btn-outline-c {
       background: transparent; color: var(--cyan);
       border: 1px solid var(--cyan);
@@ -173,14 +265,24 @@
       text-decoration: none; font-size: .9rem; letter-spacing: .05em;
       transition: background .2s, transform .2s;
     }
-    .btn-outline-c:hover { background: rgba(0,255,231,.08); transform: translateY(-2px); color: var(--cyan); }
+    .btn-outline-c:hover { background: rgba(0,255,231,.08); transform: translateY(-3px); color: var(--cyan); }
 
     .social-row { display: flex; gap: 1rem; margin-top: 2rem; animation: fadeUp .7s .4s ease both; }
     .social-row a {
       color: var(--muted); font-size: 1.2rem;
       transition: color .2s, transform .2s;
+      position: relative;
     }
-    .social-row a:hover { color: var(--cyan); transform: translateY(-3px); }
+    .social-row a:hover { color: var(--cyan); transform: translateY(-4px) scale(1.15); }
+    .social-row a::after {
+      content: '';
+      position: absolute; bottom: -5px; left: 50%;
+      width: 0; height: 2px; background: var(--cyan);
+      transition: width 0.3s, left 0.3s;
+    }
+    .social-row a:hover::after {
+      width: 100%; left: 0;
+    }
 
     /* ── SECTION BASE ── */
     section { padding: 5rem 1.5rem; }
@@ -199,6 +301,8 @@
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
     @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
     .about-text { color: var(--text); line-height: 1.8; font-size: .95rem; }
+    .about-strong { color: #fff; }
+    :root.light-mode .about-strong { color: #1e293b; }
     .info-card {
       background: var(--bg);
       border: 1px solid var(--border);
@@ -390,23 +494,26 @@
 
 <!-- ── NAVBAR ── -->
 <nav>
-  <a href="#hero" class="nav-brand">
+  <a href="index.html" class="nav-brand">
     <img src="Assets/Images/Logo.png" alt="Logo" class="nav-brand-logo"/>
   </a>
-  <button class="nav-toggle" id="navToggle"><i class="bi bi-list"></i></button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#competitions">Competitions</a></li>
-  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle"><i class="bi bi-moon"></i></button>
+    <button class="nav-toggle" id="navToggle"><i class="bi bi-list"></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="achievements.html">Achievements</a></li>
+    </ul>
+  </div>
 </nav>
 
 <!-- ── HERO ── -->
 <section id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
+  <div class="hero-grid" id="heroGrid"></div>
+  <div class="hero-glow" id="heroGlow"></div>
+  <div class="hero-particles" id="heroParticles"></div>
   <div class="container">
     <div class="hero-inner">
 
@@ -428,7 +535,7 @@
       </div>
 
       <!-- Photo side -->
-      <div class="hero-photo-col">
+      <div class="hero-photo-col" id="heroPhotoCol">
         <div class="hero-photo-wrap">
           <img src="Assets/Images/Profile_Picture.png" alt="Marck Jedrick S. Mabalot" class="hero-photo"/>
         </div>
@@ -445,9 +552,9 @@
     <h2 class="section-title reveal">Who I Am</h2>
     <div class="about-grid">
       <div class="about-text reveal">
-        <p>I am a <strong style="color:#fff">Bachelor of Science in Information Technology</strong> student from Polytechnic University of the Philippines – Sto. Tomas Campus with strong interests in software development, artificial intelligence, cybersecurity, and project management.</p>
+        <p>I am a <strong class="about-strong">Bachelor of Science in Information Technology</strong> student from Polytechnic University of the Philippines – Sto. Tomas Campus with strong interests in software development, artificial intelligence, cybersecurity, and project management.</p>
         <br/>
-        <p>I enjoy building technology-driven solutions, leading collaborative projects, and continuously learning emerging technologies that create real-world impact. Currently serving as <strong style="color:#fff">Head of Educational and Research Committee</strong> at the PUP STC Computer Society and co-founder of <strong style="color:#fff">LIQ Solutions</strong>.</p>
+        <p>I enjoy building technology-driven solutions, leading collaborative projects, and continuously learning emerging technologies that create real-world impact. Currently serving as <strong class="about-strong">Head of Educational and Research Committee</strong> at the PUP STC Computer Society and co-founder of <strong class="about-strong">LIQ Solutions</strong>.</p>
       </div>
       <div class="info-card reveal">
         <div class="info-item"><i class="bi bi-geo-alt"></i><span>PUP – Sto. Tomas Campus, Philippines</span></div>
@@ -506,6 +613,7 @@
           <ul>
             <li>Led and coordinated educational and technology-focused initiatives for BSIT students.</li>
             <li>Organized <em>"From Algorithms to Intelligence"</em> — a seminar on AI systems and machine learning.</li>
+            <li>Organized <em>"Ctrl+Alt+Lead: Project Management for the IT Generation"</em> — a seminar on modern software testing, project management, and their real-world applications.</li>
             <li>Organized <em>EduCTF: 2026 Comsoc Hacking Competition</em> — a school-wide cybersecurity event.</li>
             <li>Collaborated with officers, speakers, and committees for successful event execution.</li>
           </ul>
@@ -615,7 +723,7 @@
           <h3 class="proj-title">Fronesis</h3>
           <p class="proj-desc">AI-Powered Adaptive Learning System that personalizes educational content based on student performance, learning behavior, and response patterns with intelligent recommendations.</p>
           <div class="proj-tech">
-            <span>AI/ML</span><span>Educational Tech</span><span>Data Analysis</span><span>System Design</span>
+            <span>Dart</span><span>Python</span><span>SQL Database</span><span>Ollama Open-Source AI</span><span>AI/ML</span><span>Educational Tech</span>
           </div>
           <div class="proj-footer">
             <a href="https://youtu.be/c4ypLnhL77U?si=NiOvO4pJcjFmzCta" target="_blank" class="proj-link"><i class="bi bi-youtube"></i> Pitch Video</a>
@@ -632,7 +740,7 @@
           <h3 class="proj-title">Cathedread</h3>
           <p class="proj-desc">Python Pygame-based game developed as part of CP2 coursework. Implements game mechanics, collision handling, player interaction systems, and graphical interface design.</p>
           <div class="proj-tech">
-            <span>Python</span><span>Pygame</span><span>OOP</span><span>Game Dev</span>
+            <span>Python</span><span>Pygame</span><span>OOP</span><span>Game Dev</span><span>Raycasting</span>
           </div>
           <div class="proj-footer">
             <a href="#" class="proj-link disabled"><i class="bi bi-github"></i> Repo</a>
@@ -816,6 +924,28 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+  // Theme Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('portfolioTheme');
+  if (savedTheme) {
+    document.documentElement.classList.add(savedTheme);
+    updateThemeIcon();
+  }
+
+  themeToggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('light-mode');
+    const isLight = document.documentElement.classList.contains('light-mode');
+    localStorage.setItem('portfolioTheme', isLight ? 'light-mode' : '');
+    updateThemeIcon();
+  });
+
+  function updateThemeIcon() {
+    themeToggle.innerHTML = document.documentElement.classList.contains('light-mode')
+      ? '<i class="bi bi-sun"></i>'
+      : '<i class="bi bi-moon"></i>';
+  }
+
+  // Navbar Toggle
   document.getElementById('navToggle').addEventListener('click', () => {
     document.getElementById('navLinks').classList.toggle('open');
   });
@@ -823,6 +953,7 @@
     a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
   });
 
+  // Intersection Observer for reveals
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
@@ -834,16 +965,57 @@
     });
   });
 
+  // Lightbox functions
   function openLightbox(src) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightbox = document.getElementById('lightbox');
+    if (lightboxImg && lightbox) {
+      lightboxImg.src = src;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
   }
   function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Hero Particles
+  function createParticles() {
+    const container = document.getElementById('heroParticles');
+    if (!container) return;
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      particle.style.animationDelay = `${Math.random() * 10}s`;
+      particle.style.animationDuration = `${8 + Math.random() * 10}s`;
+      particle.style.width = `${2 + Math.random() * 4}px`;
+      particle.style.height = particle.style.width;
+      container.appendChild(particle);
+    }
+  }
+  createParticles();
+
+  // Mouse Parallax Effect
+  const heroGrid = document.getElementById('heroGrid');
+  const heroGlow = document.getElementById('heroGlow');
+  const heroPhotoCol = document.getElementById('heroPhotoCol');
+  document.addEventListener('mousemove', (e) => {
+    if (!heroGrid || !heroGlow) return;
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+    heroGrid.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    heroGlow.style.transform = `translate(${x * -1}px, ${y * -1}px)`;
+    if (heroPhotoCol) {
+      heroPhotoCol.style.transform = `translate(${x * 0.8}px, ${y * 0.8}px)`;
+    }
+  });
 </script>
 </body>
 </html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marck Jedrick S. Mabalot — Education</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <link rel="icon" type="image/png" href="Assets/Images/Logo.png">
+  <style>
+    :root {
+      --bg: #060b14;
+      --surface: #0d1520;
+      --surface2: #111d2e;
+      --cyan: #00ffe7;
+      --green: #39ff6a;
+      --text: #c8d8e8;
+      --muted: #5a7080;
+      --border: rgba(0,255,231,0.12);
+      --font-display: 'Syne', sans-serif;
+      --font-mono: 'Share Tech Mono', monospace;
+    }
+    :root.light-mode {
+      --bg: #eef2f6;
+      --surface: #ffffff;
+      --surface2: #e4ebf1;
+      --cyan: #0e7490;
+      --green: #047857;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: rgba(15,23,42,0.1);
+    }
+    :root.light-mode body::before { opacity: 0.15; }
+    :root.light-mode .education-card:hover { box-shadow: -4px 0 30px rgba(14, 116, 144, 0.15); }
+    :root.light-mode .grade-tag { background: rgba(16,185,129,.08); border-color: rgba(16,185,129,.25); }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-display);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: .4;
+    }
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: rgba(6,11,20,.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: .9rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .light-mode nav {
+      background: rgba(248, 250, 252, 0.9);
+    }
+    .nav-brand { display: flex; align-items: center; text-decoration: none; }
+    .nav-brand-logo {
+      height: 36px; width: auto; border-radius: 4px;
+      object-fit: contain; filter: brightness(1.15);
+    }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); font-size: .85rem; text-decoration: none;
+      letter-spacing: .08em; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-toggle { display: none; background: none; border: none; color: var(--cyan); font-size: 1.4rem; cursor: pointer; }
+    .theme-toggle {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--cyan); padding: 0.4rem 0.8rem; border-radius: 4px;
+      cursor: pointer; transition: background 0.3s, transform 0.2s;
+      font-size: 1rem;
+    }
+    .theme-toggle:hover { background: rgba(0,255,231,.08); transform: translateY(-2px); }
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(6,11,20,.97); padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; }
+      .light-mode .nav-links {
+        background: rgba(248, 250, 252, 0.97);
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+    }
+    section { padding: 5rem 1.5rem; }
+    .section-label {
+      font-family: var(--font-mono); color: var(--cyan);
+      font-size: .75rem; letter-spacing: .25em;
+      text-transform: uppercase; margin-bottom: .5rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; color: #fff; margin-bottom: 2.5rem;
+    }
+    .light-mode .section-title {
+      color: #1e293b;
+    }
+    .education-container {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 2rem;
+    }
+    .education-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--cyan);
+      border-radius: 0 12px 12px 0;
+      padding: 2rem;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .education-card:hover {
+      transform: translateX(6px);
+      box-shadow: -4px 0 30px rgba(0,255,231,.15);
+    }
+    .education-header {
+      display: flex; gap: 1.5rem; align-items: start; flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .education-img {
+      width: 120px; height: 120px; border-radius: 10px;
+      object-fit: cover; border: 1px solid var(--border);
+      cursor: pointer; transition: filter .3s;
+    }
+    .education-img:hover { filter: brightness(1.1); }
+    .education-school {
+      font-size: 1.5rem; font-weight: 800; color: #fff;
+    }
+    .light-mode .education-school {
+      color: #1e293b;
+    }
+    .light-mode .lightbox {
+      background: rgba(15, 23, 42, 0.92);
+    }
+    .education-degree {
+      color: var(--cyan); font-family: var(--font-mono);
+      font-size: .9rem; margin: .3rem 0 .8rem;
+    }
+    .education-details {
+      color: var(--text); line-height: 1.9;
+    }
+    .education-details ul {
+      padding-left: 1.5rem; margin-top: .7rem;
+    }
+    .education-details li {
+      margin-bottom: .5rem;
+    }
+    .grade-tag {
+      display: inline-block; padding: .3rem .8rem; border-radius: 4px;
+      background: rgba(57,255,106,.08); border: 1px solid rgba(57,255,106,.2);
+      color: var(--green); font-family: var(--font-mono);
+      font-size: .75rem; margin-right: .5rem; margin-top: .5rem;
+    }
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(6,11,20,.92); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw; max-height: 85vh;
+      border-radius: 8px; border: 1px solid var(--border);
+      box-shadow: 0 0 60px rgba(0,255,231,.15);
+    }
+    .lightbox-close {
+      position: absolute; top: 1.2rem; right: 1.5rem;
+      background: none; border: none; color: var(--cyan);
+      font-size: 2rem; cursor: pointer; line-height: 1;
+    }
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    footer p { color: var(--muted); font-family: var(--font-mono); font-size: .78rem; }
+    footer a { color: var(--cyan); text-decoration: none; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 3px; }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-brand">
+    <img src="Assets/Images/Logo.png" alt="Logo" class="nav-brand-logo"/>
+  </a>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle"><i class="bi bi-moon"></i></button>
+    <button class="nav-toggle" id="navToggle"><i class="bi bi-list"></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="education.html" class="active">Education</a></li>
+      <li><a href="achievements.html">Achievements</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="education-page" style="padding-top: 8rem;">
+  <div class="container">
+    <p class="section-label reveal">01 // Education</p>
+    <h2 class="section-title reveal">My Academic Journey</h2>
+    <div class="education-container">
+      
+      <!-- Senior High School -->
+      <div class="education-card reveal">
+        <div class="education-header">
+          <img src="Assets/Images/SHSGraduation.jpg" alt="SHS Graduation" class="education-img" onclick="openLightbox('Assets/Images/SHSGraduation.jpg')"/>
+          <div>
+            <h3 class="education-school">Tanauan City Academy</h3>
+            <p class="education-degree">Senior High School</p>
+          </div>
+        </div>
+        <div class="education-details">
+          <div>
+            <span class="grade-tag">Grade 11</span>
+            <span class="grade-tag">With Honors</span>
+            <span class="grade-tag">93 AVG</span>
+            <ul>
+              <li>Student Body Council ICT representative</li>
+            </ul>
+          </div>
+          <div style="margin-top: 1.2rem;">
+            <span class="grade-tag">Grade 12</span>
+            <span class="grade-tag">With High Honors</span>
+            <span class="grade-tag">95 AVG</span>
+            <span class="grade-tag">Class Rank 2</span>
+            <ul>
+              <li>Class President</li>
+              <li>Best in Work Immersion</li>
+              <li>Best Literature Trifecta</li>
+              <li>Best Position Paper</li>
+              <li>Exemplary Performance in Practical Research 2</li>
+              <li>Best in Attendance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- College -->
+      <div class="education-card reveal">
+        <div class="education-header">
+          <div style="width: 120px; height: 120px; border-radius: 10px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; background: var(--surface2);">
+            <i class="bi bi-building" style="font-size: 3.5rem; color: var(--cyan);"></i>
+          </div>
+          <div>
+            <h3 class="education-school">Polytechnic University of the Philippines</h3>
+            <p class="education-degree">Bachelor of Science in Information Technology</p>
+          </div>
+        </div>
+        <div class="education-details">
+          <div>
+            <span class="grade-tag">1st Year</span>
+            <span class="grade-tag">Top 8</span>
+            <span class="grade-tag">GWA 1.565</span>
+            <span class="grade-tag">Dean's Lister</span>
+            <ul>
+              <li>COMSOC Documentation and Report Committee - Outstanding Service Awardee 2025</li>
+              <li>Best Debater in Purposive Communications</li>
+              </div>
+        <div class="education-details">
+          <div>
+            <span class="grade-tag">2nd Year</span>
+            <span class="grade-tag">First Sem Deans List</span>
+            <span class="grade-tag">GWA 1.63</span>
+            <ul>
+              <li>Head of the Educational and Research Committee</li>
+            </ul>
+          </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img id="lightbox-img" src="" alt=""/>
+</div>
+
+<footer>
+  <p>Designed & Built by <a href="index.html">Marck Jedrick S. Mabalot</a></p>
+  <p style="margin-top:.4rem;">mabalotmarckjedrick@gmail.com</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Theme Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('portfolioTheme');
+  if (savedTheme) {
+    document.documentElement.classList.add(savedTheme);
+    updateThemeIcon();
+  }
+
+  themeToggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('light-mode');
+    const isLight = document.documentElement.classList.contains('light-mode');
+    localStorage.setItem('portfolioTheme', isLight ? 'light-mode' : '');
+    updateThemeIcon();
+  });
+
+  function updateThemeIcon() {
+    themeToggle.innerHTML = document.documentElement.classList.contains('light-mode')
+      ? '<i class="bi bi-sun"></i>'
+      : '<i class="bi bi-moon"></i>';
+  }
+
+  // Navbar Toggle
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
