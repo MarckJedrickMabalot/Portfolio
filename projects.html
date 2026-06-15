@@ -197,6 +197,22 @@
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 3px; }
+    .project-detail-img { cursor: pointer; transition: transform 0.3s; }
+    .project-detail-img:hover { transform: scale(1.02); }
+    .video-modal {
+      display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95); justify-content: center; align-items: center;
+    }
+    .video-modal-content {
+      position: relative; width: 90%; max-width: 900px;
+    }
+    .video-modal-close {
+      position: absolute; top: -40px; right: 0; color: var(--cyan); font-size: 2rem;
+      cursor: pointer; background: none; border: none;
+    }
+    .video-modal video {
+      width: 100%; border-radius: 8px;
+    }
   </style>
 </head>
 <body>
@@ -217,6 +233,12 @@
   </div>
 </nav>
 
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-content">
+    <button class="video-modal-close" id="videoModalClose">&times;</button>
+    <video id="modalVideo" controls></video>
+  </div>
+</div>
 <section id="projects-page" style="padding-top: 8rem;">
   <div class="container">
     <p class="section-label reveal">01 // Projects</p>
@@ -224,7 +246,7 @@
     <div class="project-detail-container">
       <div class="project-detail-card reveal">
         <div class="project-detail-header">
-          <img src="Assets/Images/Sagipq.png" alt="SagipQ" class="project-detail-img"/>
+          <img src="Assets/Images/Sagipq.png" alt="SagipQ" class="project-detail-img" data-video="Assets/Videos/SagipQ.mp4"/>
           <div class="project-detail-meta">
             <h2>SagipQ</h2>
             <p class="project-detail-badge">🏆 3rd Runner Up – PUP Hackathon 2025</p>
@@ -267,7 +289,7 @@
 
       <div class="project-detail-card reveal">
         <div class="project-detail-header">
-          <img src="Assets/Images/Fronesis.png" alt="Fronesis" class="project-detail-img"/>
+          <img src="Assets/Images/Fronesis.png" alt="Fronesis" class="project-detail-img" data-video="Assets/Videos/Fronesis.mp4"/>
           <div class="project-detail-meta">
             <h2>Fronesis</h2>
             <p class="project-detail-badge">AI Ready ASEAN Youth Challenge 2026</p>
@@ -301,7 +323,7 @@
 
       <div class="project-detail-card reveal">
         <div class="project-detail-header">
-          <img src="Assets/Images/Cathedread.png" alt="Cathedread" class="project-detail-img" style="object-position: center;"/>
+          <img src="Assets/Images/Cathedread.png" alt="Cathedread" class="project-detail-img" style="object-position: center;" data-video="Assets/Videos/Cathedread.mp4"/>
           <div class="project-detail-meta">
             <h2>Cathedread</h2>
             <p class="project-detail-badge">Computer Programming 2 – 2025</p>
@@ -337,7 +359,7 @@
 
       <div class="project-detail-card reveal">
         <div class="project-detail-header">
-          <img src="Assets/Images/JedsArmory.png" alt="Jed's Armory" class="project-detail-img"/>
+          <img src="Assets/Images/JedsArmory.png" alt="Jed's Armory" class="project-detail-img" data-video="Assets/Videos/JedsArmory.mp4"/>
           <div class="project-detail-meta">
             <h2>Jed's Armory</h2>
             <p class="project-detail-badge">Computer Programming 3 – Web Development</p>
@@ -364,7 +386,7 @@
 
       <div class="project-detail-card reveal">
         <div class="project-detail-header">
-          <img src="Assets/Images/AttexLuxuryWatches.png" alt="Attex Luxury Watches" class="project-detail-img"/>
+          <img src="Assets/Images/AttexLuxuryWatches.png" alt="Attex Luxury Watches" class="project-detail-img" data-video="Assets/Videos/AttexLuxuryWatches.mp4"/>
           <div class="project-detail-meta">
             <h2>Attex Luxury Watches</h2>
             <p class="project-detail-badge">Hobby / For Fun</p>
@@ -390,7 +412,7 @@
 
       <div class="project-detail-card reveal">
         <div class="project-detail-header">
-          <img src="Assets/Images/ArchmagesLedger.png" alt="The Archmage's Ledger" class="project-detail-img"/>
+          <img src="Assets/Images/ArchmagesLedger.png" alt="The Archmage's Ledger" class="project-detail-img" data-video="Assets/Videos/ArchmagesLedger.mp4"/>
           <div class="project-detail-meta">
             <h2>The Archmage's Ledger</h2>
             <p class="project-detail-badge">Hobby / For Fun – OOP PHP</p>
@@ -417,7 +439,7 @@
 
       <div class="project-detail-card reveal">
         <div class="project-detail-header">
-          <img src="Assets/Images/GameForGF.jpg" alt="Comsoc Night" class="project-detail-img"/>
+          <img src="Assets/Images/GameForGF.jpg" alt="Comsoc Night" class="project-detail-img" data-video="Assets/Videos/ComsocNight.mp4"/>
           <div class="project-detail-meta">
             <h2>Comsoc Night</h2>
             <p class="project-detail-badge">❤️ Gift for my Girlfriend</p>
@@ -436,7 +458,7 @@
 
       <div class="project-detail-card reveal">
         <div class="project-detail-header">
-          <img src="Assets/Images/cybersphere.png" alt="Cybersphere" class="project-detail-img"/>
+          <img src="Assets/Images/cybersphere.png" alt="Cybersphere" class="project-detail-img" data-video="Assets/Videos/CyberSphere.mp4"/>
           <div class="project-detail-meta">
             <h2>Cybersphere</h2>
             <p class="project-detail-badge">Final Project – OOP, Integrated Programming & Info Management</p>
@@ -512,6 +534,33 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Video Modal
+  const videoModal = document.getElementById('videoModal');
+  const modalVideo = document.getElementById('modalVideo');
+  const videoModalClose = document.getElementById('videoModalClose');
+
+  document.querySelectorAll('.project-detail-img[data-video]').forEach(img => {
+    img.addEventListener('click', () => {
+      const videoSrc = img.getAttribute('data-video');
+      modalVideo.src = videoSrc;
+      videoModal.style.display = 'flex';
+      modalVideo.play();
+    });
+  });
+
+  videoModalClose.addEventListener('click', closeModal);
+  videoModal.addEventListener('click', (e) => {
+    if (e.target === videoModal) {
+      closeModal();
+    }
+  });
+
+  function closeModal() {
+    videoModal.style.display = 'none';
+    modalVideo.pause();
+    modalVideo.src = '';
+  }
 </script>
 </body>
 </html>
