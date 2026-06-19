@@ -630,7 +630,29 @@
 
     /* ── PROJECTS ── */
     #projects { background: var(--bg); }
+    .project-filter-bar { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 1.8rem; }
+    .project-filter-btn {
+      font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em;
+      color: var(--muted); background: transparent;
+      border: 1px solid var(--border); border-radius: 999px;
+      padding: .45rem 1rem; cursor: pointer;
+      transition: color .2s, border-color .2s, background .2s;
+    }
+    .project-filter-btn:hover { color: var(--text); border-color: var(--cyan); }
+    .project-filter-btn.active { color: var(--bg); background: var(--cyan); border-color: var(--cyan); font-weight: 600; }
+    .project-filter-btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; }
+    .proj-card.hidden { display: none; }
+    .projects-viewall { display: flex; justify-content: center; margin-top: 2.2rem; }
+    .projects-viewall a {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: var(--font-mono); font-size: .8rem; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--cyan);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: .65rem 1.4rem; text-decoration: none;
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+    .projects-viewall a:hover { background: rgba(0,255,231,.08); border-color: var(--cyan); transform: translateY(-2px); }
     .proj-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -1019,10 +1041,16 @@
   <div class="container">
     <p class="section-label reveal">04 // Projects</p>
     <h2 class="section-title reveal">What I've Built</h2>
+    <div class="project-filter-bar reveal">
+      <button class="project-filter-btn active" data-filter="all">All</button>
+      <button class="project-filter-btn" data-filter="competition">Competitions</button>
+      <button class="project-filter-btn" data-filter="coursework">Coursework</button>
+      <button class="project-filter-btn" data-filter="personal">Personal</button>
+    </div>
     <div class="projects-grid">
 
       <!-- SagipQ -->
-      <div class="proj-card reveal">
+      <div class="proj-card reveal" data-category="competition">
         <img src="Assets/Images/Sagipq.png" alt="SagipQ Hackathon" class="proj-img"/>
         <div class="proj-body">
           <p class="proj-badge">🏆 3rd Runner Up – PUP Hackathon 2025</p>
@@ -1039,7 +1067,7 @@
       </div>
 
       <!-- Fronesis -->
-      <div class="proj-card reveal">
+      <div class="proj-card reveal" data-category="competition">
         <img src="Assets/Images/Fronesis.png" alt="Fronesis" class="proj-img"/>
         <div class="proj-body">
           <p class="proj-badge">AI Ready ASEAN Youth Challenge 2026</p>
@@ -1056,7 +1084,7 @@
       </div>
 
       <!-- Cathedread -->
-      <div class="proj-card reveal">
+      <div class="proj-card reveal" data-category="coursework">
         <img src="Assets/Images/Cathedread.png" alt="Cathedread Game" class="proj-img" style="object-position:center;"/>
         <div class="proj-body">
           <p class="proj-badge">Computer Programming 2 – 2025</p>
@@ -1072,7 +1100,7 @@
       </div>
 
       <!-- Jed's Armory -->
-      <div class="proj-card reveal">
+      <div class="proj-card reveal" data-category="coursework">
         <img src="Assets/Images/JedsArmory.png" alt="Jed's Armory" class="proj-img"/>
         <div class="proj-body">
           <p class="proj-badge">Computer Programming 3 – Web Development</p>
@@ -1088,7 +1116,7 @@
       </div>
 
       <!-- Attex Luxury Watches -->
-      <div class="proj-card reveal">
+      <div class="proj-card reveal" data-category="personal">
         <img src="Assets/Images/AttexLuxuryWatches.png" alt="Attex Luxury Watches" class="proj-img"/>
         <div class="proj-body">
           <p class="proj-badge">Hobby / For Fun</p>
@@ -1104,7 +1132,7 @@
       </div>
 
       <!-- The Archmage's Ledger -->
-      <div class="proj-card reveal">
+      <div class="proj-card reveal" data-category="personal">
         <img src="Assets/Images/ArchmagesLedger.png" alt="The Archmage's Ledger" class="proj-img"/>
         <div class="proj-body">
           <p class="proj-badge">Hobby / For Fun – OOP PHP</p>
@@ -1120,7 +1148,7 @@
       </div>
 
       <!-- Comsoc Night -->
-      <div class="proj-card reveal">
+      <div class="proj-card reveal" data-category="personal">
         <img src="Assets/Images/GameForGF.jpg" alt="Comsoc Night" class="proj-img"/>
         <div class="proj-body">
           <p class="proj-badge">❤️ Gift for my Girlfriend</p>
@@ -1136,7 +1164,7 @@
       </div>
 
       <!-- Cybersphere -->
-      <div class="proj-card reveal">
+      <div class="proj-card reveal" data-category="coursework">
         <img src="Assets/Images/cybersphere.png" alt="Cybersphere" class="proj-img"/>
         <div class="proj-body">
           <p class="proj-badge">Final Project – OOP, Integrated Programming &amp; Info Management</p>
@@ -1155,6 +1183,9 @@
     <p style="font-family:var(--font-mono);font-size:.75rem;color:var(--muted);margin-top:1.5rem;" class="reveal">
       * Repository links coming soon. Greyed-out links will be updated when available.
     </p>
+    <div class="projects-viewall reveal">
+      <a href="projects.html">View All Projects <i class="bi bi-arrow-right"></i></a>
+    </div>
   </div>
 </section>
 
@@ -1285,6 +1316,21 @@
   document.querySelectorAll('.skills-grid, .projects-grid, .comp-list').forEach(grid => {
     grid.querySelectorAll('.reveal').forEach((el, i) => {
       el.style.transitionDelay = `${i * 0.08}s`;
+    });
+  });
+
+  // Project Filter Bar (homepage preview)
+  const homeFilterBtns = document.querySelectorAll('.project-filter-btn');
+  const homeProjCards = document.querySelectorAll('.proj-card');
+  homeFilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      homeFilterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      homeProjCards.forEach(card => {
+        const matches = filter === 'all' || card.getAttribute('data-category') === filter;
+        card.classList.toggle('hidden', !matches);
+      });
     });
   });
 
