@@ -10,14 +10,14 @@
   <link rel="icon" type="image/png" href="Assets/Images/Logo.png">
   <style>
     :root {
-      --bg: #060b14;
-      --surface: #0d1520;
-      --surface2: #111d2e;
-      --cyan: #00ffe7;
-      --green: #39ff6a;
-      --text: #c8d8e8;
-      --muted: #5a7080;
-      --border: rgba(0,255,231,0.12);
+      --bg: #040810;
+      --surface: #0a1628;
+      --surface2: #0f1e35;
+      --cyan: #4F8EF7;
+      --green: #34d399;
+      --text: #ccd9ec;
+      --muted: #5b7899;
+      --border: rgba(79,142,247,0.15);
       --font-display: 'Syne', sans-serif;
       --font-mono: 'Share Tech Mono', monospace;
     }
@@ -25,14 +25,14 @@
       --bg: #eef2f6;
       --surface: #ffffff;
       --surface2: #e4ebf1;
-      --cyan: #0e7490;
-      --green: #047857;
+      --cyan: #1a56db;
+      --green: #059669;
       --text: #1e293b;
       --muted: #64748b;
-      --border: rgba(15,23,42,0.1);
+      --border: rgba(26,86,219,0.12);
     }
     :root.light-mode body::before { opacity: 0.15; }
-    :root.light-mode .project-detail-card:hover { box-shadow: 0 10px 30px rgba(14, 116, 144, 0.15); }
+    :root.light-mode .project-detail-card:hover { box-shadow: 0 10px 30px rgba(26,86,219,0.13); }
     :root.light-mode .project-detail-tech span { background: rgba(14,116,144,.05); }
     :root.light-mode .project-detail-link:hover { background: rgba(14,116,144,.08); }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,7 +51,7 @@
     }
     nav {
       position: fixed; top: 0; width: 100%; z-index: 1000;
-      background: rgba(6,11,20,.85);
+      background: rgba(4,8,16,.88);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       padding: .9rem 1.5rem;
@@ -83,7 +83,7 @@
     }
     .theme-toggle:hover { background: rgba(0,255,231,.08); transform: translateY(-2px); }
     @media (max-width: 768px) {
-      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(6,11,20,.97); padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(4,8,16,.97); padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; }
       .light-mode .nav-links {
         background: rgba(248, 250, 252, 0.97);
       }

@@ -12,14 +12,14 @@
 
   <style>
     :root {
-      --bg: #060b14;
-      --surface: #0d1520;
-      --surface2: #111d2e;
-      --cyan: #00ffe7;
-      --green: #39ff6a;
-      --text: #c8d8e8;
-      --muted: #5a7080;
-      --border: rgba(0,255,231,0.12);
+      --bg: #040810;
+      --surface: #0a1628;
+      --surface2: #0f1e35;
+      --cyan: #4F8EF7;
+      --green: #34d399;
+      --text: #ccd9ec;
+      --muted: #5b7899;
+      --border: rgba(79,142,247,0.15);
       --font-display: 'Syne', sans-serif;
       --font-mono: 'Share Tech Mono', monospace;
     }
@@ -28,20 +28,20 @@
       --bg: #eef2f6;
       --surface: #ffffff;
       --surface2: #e4ebf1;
-      --cyan: #0e7490;
-      --green: #047857;
+      --cyan: #1a56db;
+      --green: #059669;
       --text: #1e293b;
       --muted: #64748b;
-      --border: rgba(15,23,42,0.1);
+      --border: rgba(26,86,219,0.12);
     }
     :root.light-mode body::before { opacity: 0.15; }
-    :root.light-mode .exp-card:hover { box-shadow: 0 10px 30px rgba(14, 116, 144, 0.15); }
-    :root.light-mode .proj-card:hover { box-shadow: 0 10px 30px rgba(14, 116, 144, 0.15); }
-    :root.light-mode .comp-item:hover { box-shadow: 0 10px 30px rgba(14, 116, 144, 0.15); }
-    :root.light-mode .btn-primary-c { background: #0e7490; color: white; }
+    :root.light-mode .exp-card:hover { box-shadow: 0 10px 30px rgba(26,86,219,0.13); }
+    :root.light-mode .proj-card:hover { box-shadow: 0 10px 30px rgba(26,86,219,0.13); }
+    :root.light-mode .comp-item:hover { box-shadow: 0 10px 30px rgba(26,86,219,0.13); }
+    :root.light-mode .btn-primary-c { background: #1a56db; color: white; }
     :root.light-mode .btn-primary-c:hover { box-shadow: 0 0 20px rgba(14, 116, 144, 0.3); }
-    :root.light-mode .hero-grid { background-image: linear-gradient(rgba(14,116,144,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(14,116,144,0.05) 1px, transparent 1px); }
-    :root.light-mode .hero-glow { background: radial-gradient(circle, rgba(14,116,144,0.08) 0%, transparent 70%); }
+    :root.light-mode .hero-grid { background-image: linear-gradient(rgba(26,86,219,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,219,0.04) 1px, transparent 1px); }
+    :root.light-mode .hero-glow { background: radial-gradient(circle, rgba(26,86,219,0.07) 0%, transparent 70%); }
     :root.light-mode nav { background: rgba(248, 250, 252, 0.9); }
     :root.light-mode .section-title,
     :root.light-mode .exp-role,
@@ -74,7 +74,7 @@
     /* ── NAVBAR ── */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 1000;
-      background: rgba(6,11,20,0.85);
+      background: rgba(4,8,16,0.88);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       padding: .9rem 1.5rem;
@@ -106,7 +106,7 @@
     .nav-right { display: flex; align-items: center; gap: 1rem; }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(6,11,20,.97); padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(4,8,16,.97); padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; }
       .light-mode .nav-links { background: rgba(248, 250, 252, 0.97); }
       .nav-links.open { display: flex; }
       .nav-toggle { display: block; }
@@ -332,13 +332,15 @@
     }
     .skill-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
     .skill-tag {
-      background: rgba(0,255,231,.07);
-      border: 1px solid rgba(0,255,231,.2);
+      display: inline-flex; align-items: center; gap: .35rem;
+      background: rgba(79,142,247,.08);
+      border: 1px solid rgba(79,142,247,.25);
       color: var(--cyan); font-family: var(--font-mono);
       font-size: .78rem; padding: .3rem .75rem; border-radius: 3px;
-      transition: background .2s;
+      transition: background .2s, border-color .2s;
     }
-    .skill-tag:hover { background: rgba(0,255,231,.15); }
+    .skill-tag i { font-size: .82rem; opacity: .85; }
+    .skill-tag:hover { background: rgba(79,142,247,.16); border-color: rgba(79,142,247,.45); }
 
     /* ── EXPERIENCE ── */
     #experience { background: var(--surface); }
@@ -450,7 +452,7 @@
     /* ── LIGHTBOX ── */
     .lightbox {
       display: none; position: fixed; inset: 0; z-index: 2000;
-      background: rgba(6,11,20,.92); backdrop-filter: blur(6px);
+      background: rgba(4,8,16,.95); backdrop-filter: blur(6px);
       align-items: center; justify-content: center; padding: 1.5rem;
     }
     .lightbox.open { display: flex; }
@@ -578,21 +580,36 @@
       <div class="skill-group reveal">
         <p class="skill-group-title"><i class="bi bi-code-slash"></i> &nbsp;Programming &amp; Development</p>
         <div class="skill-tags">
-          <span class="skill-tag">Python</span><span class="skill-tag">Flask</span><span class="skill-tag">Dart</span>
-          <span class="skill-tag">C++</span><span class="skill-tag">C#</span><span class="skill-tag">PHP</span>
-          <span class="skill-tag">HTML</span><span class="skill-tag">CSS</span><span class="skill-tag">JavaScript</span>
-          <span class="skill-tag">Bootstrap</span><span class="skill-tag">MySQL</span><span class="skill-tag">SQLite</span>
-          <span class="skill-tag">CTurbo</span>
+          <span class="skill-tag"><i class="bi bi-filetype-py"></i> Python</span>
+          <span class="skill-tag"><i class="bi bi-server"></i> Flask</span>
+          <span class="skill-tag"><i class="bi bi-phone"></i> Dart</span>
+          <span class="skill-tag"><i class="bi bi-braces"></i> C++</span>
+          <span class="skill-tag"><i class="bi bi-braces"></i> C#</span>
+          <span class="skill-tag"><i class="bi bi-filetype-php"></i> PHP</span>
+          <span class="skill-tag"><i class="bi bi-filetype-html"></i> HTML</span>
+          <span class="skill-tag"><i class="bi bi-filetype-css"></i> CSS</span>
+          <span class="skill-tag"><i class="bi bi-filetype-js"></i> JavaScript</span>
+          <span class="skill-tag"><i class="bi bi-bootstrap"></i> Bootstrap</span>
+          <span class="skill-tag"><i class="bi bi-database"></i> MySQL</span>
+          <span class="skill-tag"><i class="bi bi-database"></i> SQLite</span>
+          <span class="skill-tag"><i class="bi bi-cpu"></i> CTurbo</span>
         </div>
       </div>
       <div class="skill-group reveal">
-        <p class="skill-group-title"><i class="bi bi-shield-lock"></i> &nbsp;Cybersecurity &amp; IT</p>
+        <p class="skill-group-title"><i class="bi bi-kanban"></i> &nbsp;Project Management</p>
         <div class="skill-tags">
-          <span class="skill-tag">Linux Ubuntu</span><span class="skill-tag">Windows Investigation</span>
-          <span class="skill-tag">Networking</span><span class="skill-tag">Troubleshooting</span>
-          <span class="skill-tag">Digital Forensics</span><span class="skill-tag">Autopsy</span>
-          <span class="skill-tag">CyberChef</span><span class="skill-tag">Regex Searching</span>
-          <span class="skill-tag">Cryptography</span><span class="skill-tag">Encoding &amp; Decoding</span>
+          <span class="skill-tag"><i class="bi bi-list-task"></i> Agile / Scrum</span>
+          <span class="skill-tag"><i class="bi bi-diagram-3"></i> Trello</span>
+          <span class="skill-tag"><i class="bi bi-columns-gap"></i> GitHub Projects</span>
+          <span class="skill-tag"><i class="bi bi-calendar3"></i> Sprint Planning</span>
+          <span class="skill-tag"><i class="bi bi-bar-chart-steps"></i> Gantt Charts</span>
+          <span class="skill-tag"><i class="bi bi-file-earmark-text"></i> Technical Documentation</span>
+          <span class="skill-tag"><i class="bi bi-people"></i> Team Coordination</span>
+          <span class="skill-tag"><i class="bi bi-geo-alt"></i> Scope &amp; Risk Management</span>
+          <span class="skill-tag"><i class="bi bi-pencil-square"></i> Wireframing</span>
+          <span class="skill-tag"><i class="bi bi-arrow-repeat"></i> Iterative Development</span>
+          <span class="skill-tag"><i class="bi bi-chat-dots"></i> Stakeholder Communication</span>
+          <span class="skill-tag"><i class="bi bi-clipboard-check"></i> Deliverable Tracking</span>
         </div>
       </div>
     </div>
