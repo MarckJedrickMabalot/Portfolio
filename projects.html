@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Marck Jedrick S. Mabalot — Projects</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="icon" type="image/png" href="Assets/Images/Logo.png">
   <style>
     :root {
@@ -17,10 +19,11 @@
       --green: #34d399;
       --text: #ccd9ec;
       --muted: #5b7899;
-      --border: rgba(79,142,247,0.15);
+      --border: rgba(79, 142, 247, 0.15);
       --font-display: 'Syne', sans-serif;
       --font-mono: 'Share Tech Mono', monospace;
     }
+
     :root.light-mode {
       --bg: #eef2f6;
       --surface: #ffffff;
@@ -29,702 +32,1109 @@
       --green: #059669;
       --text: #1e293b;
       --muted: #64748b;
-      --border: rgba(26,86,219,0.12);
+      --border: rgba(26, 86, 219, 0.12);
     }
-    :root.light-mode body::before { opacity: 0.15; }
-    :root.light-mode .project-detail-card:hover { box-shadow: 0 10px 30px rgba(26,86,219,0.13); }
-    :root.light-mode .project-detail-tech span { background: rgba(14,116,144,.05); }
-    :root.light-mode .project-detail-link:hover { background: rgba(14,116,144,.08); }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+
+    :root.light-mode body::before {
+      opacity: 0.15;
+    }
+
+    :root.light-mode .project-detail-card:hover {
+      box-shadow: 0 10px 30px rgba(26, 86, 219, 0.13);
+    }
+
+    :root.light-mode .project-detail-tech span {
+      background: rgba(14, 116, 144, .05);
+    }
+
+    :root.light-mode .project-detail-link:hover {
+      background: rgba(14, 116, 144, .08);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--font-display);
       overflow-x: hidden;
     }
+
     body::before {
       content: '';
-      position: fixed; inset: 0;
+      position: fixed;
+      inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 9999; opacity: .4;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .4;
     }
+
     nav {
-      position: fixed; top: 0; width: 100%; z-index: 1000;
-      background: rgba(4,8,16,.88);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(4, 8, 16, .88);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       padding: .9rem 1.5rem;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
+
     .light-mode nav {
       background: rgba(248, 250, 252, 0.9);
     }
-    .nav-brand { display: flex; align-items: center; text-decoration: none; }
-    .nav-brand-logo {
-      height: 36px; width: auto; border-radius: 4px;
-      object-fit: contain; filter: brightness(1.15);
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
     }
-    .nav-right { display: flex; align-items: center; gap: 1rem; }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+
+    .nav-brand-logo {
+      height: 36px;
+      width: auto;
+      border-radius: 4px;
+      object-fit: contain;
+      filter: brightness(1.15);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
     .nav-links a {
-      color: var(--muted); font-size: .85rem; text-decoration: none;
-      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--muted);
+      font-size: .85rem;
+      text-decoration: none;
+      letter-spacing: .08em;
+      text-transform: uppercase;
       transition: color .2s;
     }
-    .nav-links a:hover { color: var(--cyan); }
-    .nav-links a.active { color: var(--cyan); }
-    .nav-toggle { display: none; background: none; border: none; color: var(--cyan); font-size: 1.4rem; cursor: pointer; }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .nav-links a.active {
+      color: var(--cyan);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--cyan);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
     .theme-toggle {
-      background: transparent; border: 1px solid var(--border);
-      color: var(--cyan); padding: 0.4rem 0.8rem; border-radius: 4px;
-      cursor: pointer; transition: background 0.3s, transform 0.2s;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--cyan);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
       font-size: 1rem;
     }
-    .theme-toggle:hover { background: rgba(0,255,231,.08); transform: translateY(-2px); }
+
+    .theme-toggle:hover {
+      background: rgba(0, 255, 231, .08);
+      transform: translateY(-2px);
+    }
+
     @media (max-width: 768px) {
-      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(4,8,16,.97); padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); gap: 1rem; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(4, 8, 16, .97);
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        gap: 1rem;
+      }
+
       .light-mode .nav-links {
         background: rgba(248, 250, 252, 0.97);
       }
-      .nav-links.open { display: flex; }
-      .nav-toggle { display: block; }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
     }
-    section { padding: 5rem 1.5rem; }
+
+    section {
+      padding: 5rem 1.5rem;
+    }
+
     .section-label {
-      font-family: var(--font-mono); color: var(--cyan);
-      font-size: .75rem; letter-spacing: .25em;
-      text-transform: uppercase; margin-bottom: .5rem;
+      font-family: var(--font-mono);
+      color: var(--cyan);
+      font-size: .75rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
     }
+
     .section-title {
       font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 800; color: #fff; margin-bottom: 2.5rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 2.5rem;
     }
+
     .light-mode .section-title {
       color: #1e293b;
     }
+
     /* ---------- Filter bar ---------- */
     .project-filter-bar {
-      display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-bottom: 2.2rem;
     }
+
     .project-filter-btn {
-      font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em;
-      color: var(--muted); background: transparent;
-      border: 1px solid var(--border); border-radius: 999px;
-      padding: .45rem 1rem; cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      letter-spacing: .06em;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: .45rem 1rem;
+      cursor: pointer;
       transition: color .2s, border-color .2s, background .2s;
     }
-    .project-filter-btn:hover { color: var(--text); border-color: var(--cyan); }
+
+    .project-filter-btn:hover {
+      color: var(--text);
+      border-color: var(--cyan);
+    }
+
     .project-filter-btn.active {
-      color: var(--bg); background: var(--cyan); border-color: var(--cyan);
+      color: var(--bg);
+      background: var(--cyan);
+      border-color: var(--cyan);
       font-weight: 600;
     }
 
     /* ---------- Card grid (replaces long vertical stack) ---------- */
     .project-detail-container {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem;
-      max-width: 1200px; margin: 0 auto;
+      max-width: 1200px;
+      margin: 0 auto;
     }
+
     .project-detail-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px; overflow: hidden;
+      border-radius: 12px;
+      overflow: hidden;
       transition: border-color .3s, transform .25s;
       cursor: pointer;
-      display: flex; flex-direction: column;
+      display: flex;
+      flex-direction: column;
     }
-    .project-detail-card:hover { border-color: var(--cyan); transform: translateY(-3px); }
-    .project-detail-card:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
-    .project-filter-btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
-    .project-detail-card.hidden { display: none; }
+
+    .project-detail-card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-3px);
+    }
+
+    .project-detail-card:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 2px;
+    }
+
+    .project-filter-btn:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 2px;
+    }
+
+    .project-detail-card.hidden {
+      display: none;
+    }
 
     .project-detail-header {
-      display: flex; flex-direction: column; gap: 1rem; padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.2rem;
       flex: 1;
     }
+
     .project-detail-img {
-      width: 100%; height: 170px; object-fit: cover; border-radius: 8px;
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 8px;
       filter: brightness(.9) saturate(.9);
     }
+
     .project-detail-meta h2 {
-      font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.4rem;
     }
+
     .light-mode .project-detail-meta h2 {
       color: #1e293b;
     }
+
     .project-detail-badge {
-      font-family: var(--font-mono); font-size: .68rem;
-      color: var(--green); letter-spacing: .1em; margin-bottom: .8rem;
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      color: var(--green);
+      letter-spacing: .1em;
+      margin-bottom: .8rem;
       display: block;
     }
+
     .project-detail-tech {
-      display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-bottom: .9rem;
     }
+
     .project-detail-tech span {
-      background: rgba(0,255,231,.06);
+      background: rgba(0, 255, 231, .06);
       border: 1px solid var(--border);
-      color: var(--muted); font-family: var(--font-mono);
-      font-size: .66rem; padding: .18rem .5rem; border-radius: 3px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: .66rem;
+      padding: .18rem .5rem;
+      border-radius: 3px;
     }
+
     .project-detail-links {
-      display: flex; gap: .6rem; flex-wrap: wrap; margin-top: auto;
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      margin-top: auto;
     }
+
     .project-detail-link {
-      display: inline-flex; align-items: center; gap: .4rem;
-      font-family: var(--font-mono); font-size: .74rem;
-      color: var(--cyan); border: 1px solid var(--border);
-      padding: .3rem .7rem; border-radius: 4px;
-      text-decoration: none; transition: background .2s, border-color .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: var(--font-mono);
+      font-size: .74rem;
+      color: var(--cyan);
+      border: 1px solid var(--border);
+      padding: .3rem .7rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background .2s, border-color .2s;
     }
-    .project-detail-link:hover { background: rgba(0,255,231,.08); border-color: var(--cyan); }
-    .project-detail-link.disabled { opacity: .4; pointer-events: none; }
+
+    .project-detail-link:hover {
+      background: rgba(0, 255, 231, .08);
+      border-color: var(--cyan);
+    }
+
+    .project-detail-link.disabled {
+      opacity: .4;
+      pointer-events: none;
+    }
+
     .project-card-expand {
-      font-family: var(--font-mono); font-size: .7rem; letter-spacing: .08em;
-      color: var(--muted); padding: .7rem 1.2rem;
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      letter-spacing: .08em;
+      color: var(--muted);
+      padding: .7rem 1.2rem;
       border-top: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       text-transform: uppercase;
     }
-    .project-detail-card:hover .project-card-expand { color: var(--cyan); }
+
+    .project-detail-card:hover .project-card-expand {
+      color: var(--cyan);
+    }
 
     /* ---------- Detail modal (full content, opened on click) ---------- */
     .project-modal {
-      display: none; position: fixed; inset: 0; z-index: 2000;
-      background: rgba(2,5,10,.88); backdrop-filter: blur(6px);
-      padding: 4rem 1.2rem 2rem; overflow-y: auto;
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(2, 5, 10, .88);
+      backdrop-filter: blur(6px);
+      padding: 4rem 1.2rem 2rem;
+      overflow-y: auto;
     }
-    .project-modal.open { display: block; }
+
+    .project-modal.open {
+      display: block;
+    }
+
     .project-modal-inner {
-      max-width: 800px; margin: 0 auto;
+      max-width: 800px;
+      margin: 0 auto;
       background: var(--surface);
-      border: 1px solid var(--border); border-radius: 12px;
-      overflow: hidden; position: relative;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
       animation: fadeUp .35s ease;
     }
+
     .project-modal-close {
-      position: absolute; top: 1rem; right: 1rem; z-index: 5;
-      background: rgba(4,8,16,.6); border: 1px solid var(--border);
-      color: var(--text); width: 36px; height: 36px; border-radius: 50%;
-      font-size: 1.3rem; cursor: pointer; line-height: 1;
-      display: flex; align-items: center; justify-content: center;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 5;
+      background: rgba(4, 8, 16, .6);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: pointer;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .project-modal-close:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    .project-modal-close:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
     .project-modal-img {
-      width: 100%; height: 260px; object-fit: cover;
-      filter: brightness(.9) saturate(.9); cursor: pointer;
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      filter: brightness(.9) saturate(.9);
+      cursor: pointer;
     }
-    @media (max-width: 600px) { .project-modal-img { height: 180px; } }
-    .project-modal-body { padding: 2rem; }
+
+    @media (max-width: 600px) {
+      .project-modal-img {
+        height: 180px;
+      }
+    }
+
+    .project-modal-body {
+      padding: 2rem;
+    }
+
     .project-modal-body h2 {
-      font-size: 1.7rem; font-weight: 800; color: #fff; margin-bottom: .5rem;
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: .5rem;
     }
-    .light-mode .project-modal-body h2 { color: #1e293b; }
+
+    .light-mode .project-modal-body h2 {
+      color: #1e293b;
+    }
+
     .project-modal-content {
-      color: var(--text); line-height: 1.8; margin-top: 1.5rem;
+      color: var(--text);
+      line-height: 1.8;
+      margin-top: 1.5rem;
     }
+
     .project-modal-content h3 {
-      font-size: 1.1rem; font-weight: 700; color: #fff;
-      margin-bottom: 0.7rem; margin-top: 1.4rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.7rem;
+      margin-top: 1.4rem;
     }
-    .light-mode .project-modal-content h3 { color: #1e293b; }
-    .project-modal-content h3:first-child { margin-top: 0; }
+
+    .light-mode .project-modal-content h3 {
+      color: #1e293b;
+    }
+
+    .project-modal-content h3:first-child {
+      margin-top: 0;
+    }
+
     .project-modal-content ul {
-      padding-left: 1.5rem; margin-top: 0.5rem;
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
     }
-    .project-modal-content li { margin-bottom: 0.4rem; }
-    body.modal-locked { overflow: hidden; }
+
+    .project-modal-content li {
+      margin-bottom: 0.4rem;
+    }
+
+    body.modal-locked {
+      overflow: hidden;
+    }
+
     footer {
       background: var(--bg);
       border-top: 1px solid var(--border);
       padding: 2.5rem 1.5rem;
       text-align: center;
     }
-    footer p { color: var(--muted); font-family: var(--font-mono); font-size: .78rem; }
-    footer a { color: var(--cyan); text-decoration: none; }
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
+
+    footer p {
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: .78rem;
+    }
+
+    footer a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: none; }
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
     }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 3px; }
-    .project-detail-img { cursor: pointer; transition: transform 0.3s; }
-    .project-detail-img:hover { transform: scale(1.02); }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--cyan);
+      border-radius: 3px;
+    }
+
+    .project-detail-img {
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .project-detail-img:hover {
+      transform: scale(1.02);
+    }
+
     .video-modal {
-      display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.95); justify-content: center; align-items: center;
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      justify-content: center;
+      align-items: center;
     }
+
     .video-modal-content {
-      position: relative; width: 90%; max-width: 900px;
+      position: relative;
+      width: 90%;
+      max-width: 900px;
     }
+
     .video-modal-close {
-      position: absolute; top: -40px; right: 0; color: var(--cyan); font-size: 2rem;
-      cursor: pointer; background: none; border: none;
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: var(--cyan);
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
     }
+
     .video-modal video {
-      width: 100%; border-radius: 8px;
+      width: 100%;
+      border-radius: 8px;
     }
   </style>
 </head>
+
 <body>
-<nav>
-  <a href="index.html" class="nav-brand">
-    <img src="Assets/Images/Logo.png" alt="Logo" class="nav-brand-logo"/>
-  </a>
-  <div class="nav-right">
-    <button class="theme-toggle" id="themeToggle"><i class="bi bi-moon"></i></button>
-    <button class="nav-toggle" id="navToggle"><i class="bi bi-list"></i></button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="projects.html" class="active">Projects</a></li>
-      <li><a href="education.html">Education</a></li>
-      <li><a href="experiences.html">Experiences</a></li>
-      <li><a href="achievements.html">Achievements</a></li>
-    </ul>
-  </div>
-</nav>
+  <nav>
+    <a href="index.html" class="nav-brand">
+      <img src="Assets/Images/Logo.png" alt="Logo" class="nav-brand-logo" />
+    </a>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle"><i class="bi bi-moon"></i></button>
+      <button class="nav-toggle" id="navToggle"><i class="bi bi-list"></i></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="experiences.html">Experiences</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+      </ul>
+    </div>
+  </nav>
 
-<div class="video-modal" id="videoModal">
-  <div class="video-modal-content">
-    <button class="video-modal-close" id="videoModalClose">&times;</button>
-    <video id="modalVideo" controls></video>
-  </div>
-</div>
-
-<div class="project-modal" id="projectModal">
-  <div class="project-modal-inner">
-    <button class="project-modal-close" id="projectModalClose">&times;</button>
-    <img class="project-modal-img" id="projectModalImg" src="" alt=""/>
-    <div class="project-modal-body">
-      <h2 id="projectModalTitle"></h2>
-      <p class="project-detail-badge" id="projectModalBadge"></p>
-      <div class="project-detail-tech" id="projectModalTech"></div>
-      <div class="project-detail-links" id="projectModalLinks"></div>
-      <div class="project-modal-content" id="projectModalContent"></div>
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+      <button class="video-modal-close" id="videoModalClose">&times;</button>
+      <video id="modalVideo" controls></video>
     </div>
   </div>
-</div>
-<section id="projects-page" style="padding-top: 8rem;">
-  <div class="container">
-    <p class="section-label reveal">01 // Projects</p>
-    <h2 class="section-title reveal">Everything I've Built</h2>
-    <div class="project-filter-bar reveal">
-      <button class="project-filter-btn active" data-filter="all">All</button>
-      <button class="project-filter-btn" data-filter="competition">Competitions</button>
-      <button class="project-filter-btn" data-filter="coursework">Coursework</button>
-      <button class="project-filter-btn" data-filter="personal">Personal</button>
-    </div>
-    <div class="project-detail-container">
-      <div class="project-detail-card reveal" data-category="competition">
-        <div class="project-detail-header">
-          <img src="Assets/Images/Sagipq.png" alt="SagipQ" class="project-detail-img" data-video="Assets/Videos/SagipQ.mp4"/>
-          <div class="project-detail-meta">
-            <h2>SagipQ</h2>
-            <p class="project-detail-badge">🏆 3rd Runner Up – PUP Hackathon 2025</p>
-            <div class="project-detail-tech">
-              <span>Python</span><span>Flask</span><span>MySQL</span><span>HTML/CSS</span><span>JavaScript</span><span>Bootstrap</span>
-            </div>
-            <div class="project-detail-links">
-              <a href="https://youtu.be/yvPCN1qrgyg?si=SDQKDG5Tn3gyTa4c" target="_blank" class="project-detail-link"><i class="bi bi-youtube"></i> Pitch Video</a>
-              <a href="#" class="project-detail-link disabled"><i class="bi bi-github"></i> Repo</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template class="project-detail-content-tpl"><div class="project-detail-content">
-          <p>AI-powered incident reporting system designed to improve emergency response and public safety.</p>
-          <h3>Key Features</h3>
-          <ul>
-            <li>AI-assisted incident categorization</li>
-            <li>Real-time report submission and management</li>
-            <li>Geolocation integration</li>
-            <li>Emergency contact integration</li>
-            <li>Admin dashboard for monitoring and response coordination</li>
-          </ul>
-          <h3>Technologies Used</h3>
-          <ul>
-            <li>Backend: Python, Flask</li>
-            <li>Frontend: HTML, CSS, JavaScript, Bootstrap</li>
-            <li>Database: MySQL</li>
-            <li>AI/ML: Scikit-learn for text classification</li>
-          </ul>
-          <h3>Credits</h3>
-          <ul>
-            <li><strong>Marck Jedrick S. Mabalot</strong> - Project Leader, Paper, Pitcher</li>
-            <li>Tolentino, Mara Hanna Irish - Frontend Design</li>
-            <li>Recaña, Princes Khyle - Frontend Design</li>
-            <li>Pineda, Christine - Backend</li>
-            <li>Managa, Emmanuel - Backend</li>
-          </ul>
-        </div></template>
-      </div>
 
-      <div class="project-detail-card reveal" data-category="competition">
-        <div class="project-detail-header">
-          <img src="Assets/Images/Fronesis.png" alt="Fronesis" class="project-detail-img" data-video="Assets/Videos/Fronesis.mp4"/>
-          <div class="project-detail-meta">
-            <h2>Fronesis</h2>
-            <p class="project-detail-badge">AI Ready ASEAN Youth Challenge 2026</p>
-            <div class="project-detail-tech">
-              <span>Dart</span><span>Python</span><span>SQL Database</span><span>Ollama Open-Source AI</span><span>AI/ML</span><span>Educational Tech</span><span>Data Analysis</span><span>System Design</span>
-            </div>
-            <div class="project-detail-links">
-              <a href="https://youtu.be/c4ypLnhL77U?si=NiOvO4pJcjFmzCta" target="_blank" class="project-detail-link"><i class="bi bi-youtube"></i> Pitch Video</a>
-              <a href="https://github.com/MarckJedrickMabalot/Fronesis" target="_blank" class="project-detail-link"><i class="bi bi-github"></i> Repo</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template class="project-detail-content-tpl"><div class="project-detail-content">
-          <p>AI-Powered Adaptive Learning System that personalizes educational content based on student performance, learning behavior, and response patterns with intelligent recommendations.</p>
-          <h3>Key Features</h3>
-          <ul>
-            <li>Adaptive learning paths</li>
-            <li>Student performance analytics</li>
-            <li>Intelligent content recommendations</li>
-            <li>Learning behavior tracking</li>
-            <li>Teacher/educator dashboard</li>
-          </ul>
-          <h3>Credits</h3>
-          <ul>
-            <li><strong>Marck Jedrick S. Mabalot</strong> - Pitching, Paper</li>
-            <li>Yoshinobu Fukuhara - Frontend, Video Editing</li>
-            <li>John Cedrick Benidictos - Backend</li>
-          </ul>
-        </div></template>
+  <div class="project-modal" id="projectModal">
+    <div class="project-modal-inner">
+      <button class="project-modal-close" id="projectModalClose">&times;</button>
+      <img class="project-modal-img" id="projectModalImg" src="" alt="" />
+      <div class="project-modal-body">
+        <h2 id="projectModalTitle"></h2>
+        <p class="project-detail-badge" id="projectModalBadge"></p>
+        <div class="project-detail-tech" id="projectModalTech"></div>
+        <div class="project-detail-links" id="projectModalLinks"></div>
+        <div class="project-modal-content" id="projectModalContent"></div>
       </div>
-
-      <div class="project-detail-card reveal" data-category="coursework">
-        <div class="project-detail-header">
-          <img src="Assets/Images/Cathedread.png" alt="Cathedread" class="project-detail-img" style="object-position: center;" data-video="Assets/Videos/Cathedread.mp4"/>
-          <div class="project-detail-meta">
-            <h2>Cathedread</h2>
-            <p class="project-detail-badge">Computer Programming 2 – 2025</p>
-            <div class="project-detail-tech">
-              <span>Python</span><span>Pygame</span><span>OOP</span><span>Game Dev</span><span>Raycasting</span>
-            </div>
-            <div class="project-detail-links">
-              <a href="#" class="project-detail-link disabled"><i class="bi bi-github"></i> Repo</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template class="project-detail-content-tpl"><div class="project-detail-content">
-          <p>Python Pygame-based game developed as part of CP2 coursework. Implements game mechanics, collision handling, player interaction systems, and graphical interface design.</p>
-          <h3>Features</h3>
-          <ul>
-            <li>Complete game loop implementation</li>
-            <li>Raycasting for 3D-like rendering</li>
-            <li>Sprite-based animation system</li>
-            <li>Collision detection and physics</li>
-            <li>Player input handling</li>
-            <li>Sound and music integration</li>
-          </ul>
-          <h3>Credits</h3>
-          <ul>
-            <li><strong>Marck Jedrick S. Mabalot</strong> - Team Leader, Sprite Design, Writing</li>
-            <li>Gerald P. Limutos - Raycasting</li>
-            <li>Emmanuel Managa - UI Design</li>
-            <li>Yoshinobu Fukuhara - NPC Logic</li>
-            <li>Francis Saavedra - Map Design</li>
-          </ul>
-        </div></template>
-      </div>
-
-      <div class="project-detail-card reveal" data-category="coursework">
-        <div class="project-detail-header">
-          <img src="Assets/Images/JedsArmory.png" alt="Jed's Armory" class="project-detail-img" data-video="Assets/Videos/JedsArmory.mp4"/>
-          <div class="project-detail-meta">
-            <h2>Jed's Armory</h2>
-            <p class="project-detail-badge">Computer Programming 3 – Web Development</p>
-            <div class="project-detail-tech">
-              <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Bootstrap</span><span>PHP</span><span>MySQL</span><span>XAMPP</span><span>Figma</span>
-            </div>
-            <div class="project-detail-links">
-              <a href="https://github.com/MarckJedrickMabalot/jeds_armory.github.io" target="_blank" class="project-detail-link"><i class="bi bi-github"></i> Repo</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template class="project-detail-content-tpl"><div class="project-detail-content">
-          <p>A web-based inventory and management system designed to streamline the tracking, organization, and monitoring of equipment, items, and records through a centralized digital platform with real-time operations.</p>
-          <h3>Features</h3>
-          <ul>
-            <li>Real-time inventory tracking</li>
-            <li>Item categorization and tagging</li>
-            <li>Check-in/check-out system</li>
-            <li>User authentication and role-based access</li>
-            <li>Report generation and analytics</li>
-          </ul>
-        </div></template>
-      </div>
-
-      <div class="project-detail-card reveal" data-category="personal">
-        <div class="project-detail-header">
-          <img src="Assets/Images/AttexLuxuryWatches.png" alt="Attex Luxury Watches" class="project-detail-img" data-video="Assets/Videos/AttexLuxuryWatches.mp4"/>
-          <div class="project-detail-meta">
-            <h2>Attex Luxury Watches</h2>
-            <p class="project-detail-badge">Hobby / For Fun</p>
-            <div class="project-detail-tech">
-              <span>PHP</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
-            </div>
-            <div class="project-detail-links">
-              <a href="https://github.com/MarckJedrickMabalot/Attex_Luxury_Watches.github.io" target="_blank" class="project-detail-link"><i class="bi bi-github"></i> Repo</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template class="project-detail-content-tpl"><div class="project-detail-content">
-          <p>A PHP e-commerce website showcasing a fictional premium watch collection — a Rolex competitor brand concept built for fun, featuring a clean collection catalog and product detail views.</p>
-          <h3>Features</h3>
-          <ul>
-            <li>Product catalog with filtering</li>
-            <li>Individual product detail pages</li>
-            <li>Cart functionality</li>
-            <li>Responsive design</li>
-          </ul>
-        </div></template>
-      </div>
-
-      <div class="project-detail-card reveal" data-category="personal">
-        <div class="project-detail-header">
-          <img src="Assets/Images/ArchmagesLedger.png" alt="The Archmage's Ledger" class="project-detail-img" data-video="Assets/Videos/ArchmagesLedger.mp4"/>
-          <div class="project-detail-meta">
-            <h2>The Archmage's Ledger</h2>
-            <p class="project-detail-badge">Hobby / For Fun – OOP PHP</p>
-            <div class="project-detail-tech">
-              <span>PHP (OOP)</span><span>MySQL</span><span>SQLite</span><span>HTML5</span><span>CSS3</span>
-            </div>
-            <div class="project-detail-links">
-              <a href="https://github.com/MarckJedrickMabalot/The-Archmage-s-Ledger" target="_blank" class="project-detail-link"><i class="bi bi-github"></i> Repo</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template class="project-detail-content-tpl"><div class="project-detail-content">
-          <p>A high-fantasy single-page web application blending complex data processing with an immersive interface. Built to demonstrate mastery of core OOP principles in PHP across four functional computational modules.</p>
-          <h3>OOP Concepts Demonstrated</h3>
-          <ul>
-            <li>Classes and Objects</li>
-            <li>Inheritance and Polymorphism</li>
-            <li>Encapsulation</li>
-            <li>Abstract Classes and Interfaces</li>
-            <li>Design Patterns implementation</li>
-          </ul>
-        </div></template>
-      </div>
-
-      <div class="project-detail-card reveal" data-category="personal">
-        <div class="project-detail-header">
-          <img src="Assets/Images/GameForGF.jpg" alt="Comsoc Night" class="project-detail-img" data-video="Assets/Videos/ComsocNight.mp4"/>
-          <div class="project-detail-meta">
-            <h2>Comsoc Night</h2>
-            <p class="project-detail-badge">❤️ Gift for my Girlfriend</p>
-            <div class="project-detail-tech">
-              <span>Python</span><span>Pygame</span><span>Game Dev</span>
-            </div>
-            <div class="project-detail-links">
-              <a href="#" class="project-detail-link disabled"><i class="bi bi-github"></i> Repo</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template class="project-detail-content-tpl"><div class="project-detail-content">
-          <p>A Pygame recreation of how me and my girlfriend first met — a personal, heartfelt game built as a gift, recreating the magic of Comsoc Night: The Grand ExiT.</p>
-        </div></template>
-      </div>
-
-      <div class="project-detail-card reveal" data-category="coursework">
-        <div class="project-detail-header">
-          <img src="Assets/Images/cybersphere.png" alt="Cybersphere" class="project-detail-img" data-video="Assets/Videos/CyberSphere.mp4"/>
-          <div class="project-detail-meta">
-            <h2>Cybersphere</h2>
-            <p class="project-detail-badge">Final Project – OOP, Integrated Programming & Info Management</p>
-            <div class="project-detail-tech">
-              <span>PHP</span><span>MySQL</span>
-            </div>
-            <div class="project-detail-links">
-              <a href="https://github.com/Yosh-Fukuhara/project" target="_blank" class="project-detail-link"><i class="bi bi-github"></i> Repo</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template class="project-detail-content-tpl"><div class="project-detail-content">
-          <p>A web-based platform that combines social networking, recruitment, technical skill validation, and e-commerce into one integrated ecosystem designed for the Philippine technology and cybersecurity industry. Built to simplify how tech professionals connect with recruiters and companies.</p>
-          <h3>Key Features</h3>
-          <ul>
-            <li>Social networking and profiles</li>
-            <li>Job recruitment and applications</li>
-            <li>Technical skill validation and assessments</li>
-            <li>Integrated e-commerce for tech products/services</li>
-            <li>Tailored for Philippine tech/cybersecurity industry</li>
-          </ul>
-          <h3>Credits</h3>
-          <ul>
-            <li><strong>Marck Jedrick S. Mabalot</strong> - Project Management, Frontend Design, QA Testing, Paper</li>
-            <li>Gerald P. Limutos - QA Testing, Database, Research</li>
-            <li>Emmanuel Managa - Database Schema</li>
-            <li>Yoshinobu Fukuhara - Lead Design</li>
-            <li>Francis Saavedra - Documentation</li>
-          </ul>
-        </div></template>
-      </div>
-
     </div>
   </div>
-</section>
+  <section id="projects-page" style="padding-top: 8rem;">
+    <div class="container">
+      <p class="section-label reveal">01 // Projects</p>
+      <h2 class="section-title reveal">Everything I've Built</h2>
+      <div class="project-filter-bar reveal">
+        <button class="project-filter-btn active" data-filter="all">All</button>
+        <button class="project-filter-btn" data-filter="webdev">Web Dev</button>
+        <button class="project-filter-btn" data-filter="competition">Competitions</button>
+        <button class="project-filter-btn" data-filter="coursework">Coursework</button>
+        <button class="project-filter-btn" data-filter="personal">Personal</button>
+      </div>
+      <div class="project-detail-container">
+        <div class="project-detail-card reveal" data-category="webdev">
+          <div class="project-detail-header">
+            <img src="Assets/Images/Bento.png" alt="Bento" class="project-detail-img" />
+            <div class="project-detail-meta">
+              <h2>Bento</h2>
+              <p class="project-detail-badge">Web Dev – Assignment</p>
+              <div class="project-detail-tech"><span>HTML</span><span>CSS</span></div>
+              <div class="project-detail-links">
+                <a href="WD/bento.html" class="project-detail-link"><i class="bi bi-box-arrow-up-right"></i>
+                  Visit</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div>
+          <template class="project-detail-content-tpl">
+            <div class="project-detail-content">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </template>
+        </div>
+        <div class="project-detail-card reveal" data-category="competition">
+          <div class="project-detail-header">
+            <img src="Assets/Images/Sagipq.png" alt="SagipQ" class="project-detail-img"
+              data-video="Assets/Videos/SagipQ.mp4" />
+            <div class="project-detail-meta">
+              <h2>SagipQ</h2>
+              <p class="project-detail-badge">🏆 3rd Runner Up – PUP Hackathon 2025</p>
+              <div class="project-detail-tech">
+                <span>Python</span><span>Flask</span><span>MySQL</span><span>HTML/CSS</span><span>JavaScript</span><span>Bootstrap</span>
+              </div>
+              <div class="project-detail-links">
+                <a href="https://youtu.be/yvPCN1qrgyg?si=SDQKDG5Tn3gyTa4c" target="_blank"
+                  class="project-detail-link"><i class="bi bi-youtube"></i> Pitch Video</a>
+                <a href="#" class="project-detail-link disabled"><i class="bi bi-github"></i> Repo</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template
+            class="project-detail-content-tpl">
+            <div class="project-detail-content">
+              <p>AI-powered incident reporting system designed to improve emergency response and public safety.</p>
+              <h3>Key Features</h3>
+              <ul>
+                <li>AI-assisted incident categorization</li>
+                <li>Real-time report submission and management</li>
+                <li>Geolocation integration</li>
+                <li>Emergency contact integration</li>
+                <li>Admin dashboard for monitoring and response coordination</li>
+              </ul>
+              <h3>Technologies Used</h3>
+              <ul>
+                <li>Backend: Python, Flask</li>
+                <li>Frontend: HTML, CSS, JavaScript, Bootstrap</li>
+                <li>Database: MySQL</li>
+                <li>AI/ML: Scikit-learn for text classification</li>
+              </ul>
+              <h3>Credits</h3>
+              <ul>
+                <li><strong>Marck Jedrick S. Mabalot</strong> - Project Leader, Paper, Pitcher</li>
+                <li>Tolentino, Mara Hanna Irish - Frontend Design</li>
+                <li>Recaña, Princes Khyle - Frontend Design</li>
+                <li>Pineda, Christine - Backend</li>
+                <li>Managa, Emmanuel - Backend</li>
+              </ul>
+            </div>
+          </template>
+        </div>
 
-<footer>
-  <p>Designed & Built by <a href="index.html">Marck Jedrick S. Mabalot</a></p>
-  <p style="margin-top:.4rem;">mabalotmarckjedrick@gmail.com</p>
-</footer>
+        <div class="project-detail-card reveal" data-category="competition">
+          <div class="project-detail-header">
+            <img src="Assets/Images/Fronesis.png" alt="Fronesis" class="project-detail-img"
+              data-video="Assets/Videos/Fronesis.mp4" />
+            <div class="project-detail-meta">
+              <h2>Fronesis</h2>
+              <p class="project-detail-badge">AI Ready ASEAN Youth Challenge 2026</p>
+              <div class="project-detail-tech">
+                <span>Dart</span><span>Python</span><span>SQL Database</span><span>Ollama Open-Source
+                  AI</span><span>AI/ML</span><span>Educational Tech</span><span>Data Analysis</span><span>System
+                  Design</span>
+              </div>
+              <div class="project-detail-links">
+                <a href="https://youtu.be/c4ypLnhL77U?si=NiOvO4pJcjFmzCta" target="_blank"
+                  class="project-detail-link"><i class="bi bi-youtube"></i> Pitch Video</a>
+                <a href="https://github.com/MarckJedrickMabalot/Fronesis" target="_blank" class="project-detail-link"><i
+                    class="bi bi-github"></i> Repo</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template
+            class="project-detail-content-tpl">
+            <div class="project-detail-content">
+              <p>AI-Powered Adaptive Learning System that personalizes educational content based on student performance,
+                learning behavior, and response patterns with intelligent recommendations.</p>
+              <h3>Key Features</h3>
+              <ul>
+                <li>Adaptive learning paths</li>
+                <li>Student performance analytics</li>
+                <li>Intelligent content recommendations</li>
+                <li>Learning behavior tracking</li>
+                <li>Teacher/educator dashboard</li>
+              </ul>
+              <h3>Credits</h3>
+              <ul>
+                <li><strong>Marck Jedrick S. Mabalot</strong> - Pitching, Paper</li>
+                <li>Yoshinobu Fukuhara - Frontend, Video Editing</li>
+                <li>John Cedrick Benidictos - Backend</li>
+              </ul>
+            </div>
+          </template>
+        </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  // Theme Toggle
-  const themeToggle = document.getElementById('themeToggle');
-  const savedTheme = localStorage.getItem('portfolioTheme');
-  if (savedTheme) {
-    document.documentElement.classList.add(savedTheme);
-    updateThemeIcon();
-  }
+        <div class="project-detail-card reveal" data-category="coursework">
+          <div class="project-detail-header">
+            <img src="Assets/Images/Cathedread.png" alt="Cathedread" class="project-detail-img"
+              style="object-position: center;" data-video="Assets/Videos/Cathedread.mp4" />
+            <div class="project-detail-meta">
+              <h2>Cathedread</h2>
+              <p class="project-detail-badge">Computer Programming 2 – 2025</p>
+              <div class="project-detail-tech">
+                <span>Python</span><span>Pygame</span><span>OOP</span><span>Game Dev</span><span>Raycasting</span>
+              </div>
+              <div class="project-detail-links">
+                <a href="#" class="project-detail-link disabled"><i class="bi bi-github"></i> Repo</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template
+            class="project-detail-content-tpl">
+            <div class="project-detail-content">
+              <p>Python Pygame-based game developed as part of CP2 coursework. Implements game mechanics, collision
+                handling, player interaction systems, and graphical interface design.</p>
+              <h3>Features</h3>
+              <ul>
+                <li>Complete game loop implementation</li>
+                <li>Raycasting for 3D-like rendering</li>
+                <li>Sprite-based animation system</li>
+                <li>Collision detection and physics</li>
+                <li>Player input handling</li>
+                <li>Sound and music integration</li>
+              </ul>
+              <h3>Credits</h3>
+              <ul>
+                <li><strong>Marck Jedrick S. Mabalot</strong> - Team Leader, Sprite Design, Writing</li>
+                <li>Gerald P. Limutos - Raycasting</li>
+                <li>Emmanuel Managa - UI Design</li>
+                <li>Yoshinobu Fukuhara - NPC Logic</li>
+                <li>Francis Saavedra - Map Design</li>
+              </ul>
+            </div>
+          </template>
+        </div>
 
-  themeToggle.addEventListener('click', () => {
-    document.documentElement.classList.toggle('light-mode');
-    const isLight = document.documentElement.classList.contains('light-mode');
-    localStorage.setItem('portfolioTheme', isLight ? 'light-mode' : '');
-    updateThemeIcon();
-  });
+        <div class="project-detail-card reveal" data-category="coursework">
+          <div class="project-detail-header">
+            <img src="Assets/Images/JedsArmory.png" alt="Jed's Armory" class="project-detail-img"
+              data-video="Assets/Videos/JedsArmory.mp4" />
+            <div class="project-detail-meta">
+              <h2>Jed's Armory</h2>
+              <p class="project-detail-badge">Computer Programming 3 – Web Development</p>
+              <div class="project-detail-tech">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Bootstrap</span><span>PHP</span><span>MySQL</span><span>XAMPP</span><span>Figma</span>
+              </div>
+              <div class="project-detail-links">
+                <a href="https://github.com/MarckJedrickMabalot/jeds_armory.github.io" target="_blank"
+                  class="project-detail-link"><i class="bi bi-github"></i> Repo</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template
+            class="project-detail-content-tpl">
+            <div class="project-detail-content">
+              <p>A web-based inventory and management system designed to streamline the tracking, organization, and
+                monitoring of equipment, items, and records through a centralized digital platform with real-time
+                operations.</p>
+              <h3>Features</h3>
+              <ul>
+                <li>Real-time inventory tracking</li>
+                <li>Item categorization and tagging</li>
+                <li>Check-in/check-out system</li>
+                <li>User authentication and role-based access</li>
+                <li>Report generation and analytics</li>
+              </ul>
+            </div>
+          </template>
+        </div>
 
-  function updateThemeIcon() {
-    themeToggle.innerHTML = document.documentElement.classList.contains('light-mode')
-      ? '<i class="bi bi-sun"></i>'
-      : '<i class="bi bi-moon"></i>';
-  }
+        <div class="project-detail-card reveal" data-category="personal">
+          <div class="project-detail-header">
+            <img src="Assets/Images/AttexLuxuryWatches.png" alt="Attex Luxury Watches" class="project-detail-img"
+              data-video="Assets/Videos/AttexLuxuryWatches.mp4" />
+            <div class="project-detail-meta">
+              <h2>Attex Luxury Watches</h2>
+              <p class="project-detail-badge">Hobby / For Fun</p>
+              <div class="project-detail-tech">
+                <span>PHP</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
+              </div>
+              <div class="project-detail-links">
+                <a href="https://github.com/MarckJedrickMabalot/Attex_Luxury_Watches.github.io" target="_blank"
+                  class="project-detail-link"><i class="bi bi-github"></i> Repo</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template
+            class="project-detail-content-tpl">
+            <div class="project-detail-content">
+              <p>A PHP e-commerce website showcasing a fictional premium watch collection — a Rolex competitor brand
+                concept built for fun, featuring a clean collection catalog and product detail views.</p>
+              <h3>Features</h3>
+              <ul>
+                <li>Product catalog with filtering</li>
+                <li>Individual product detail pages</li>
+                <li>Cart functionality</li>
+                <li>Responsive design</li>
+              </ul>
+            </div>
+          </template>
+        </div>
 
-  // Navbar Toggle
-  document.getElementById('navToggle').addEventListener('click', () => {
-    document.getElementById('navLinks').classList.toggle('open');
-  });
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
-  });
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        <div class="project-detail-card reveal" data-category="personal">
+          <div class="project-detail-header">
+            <img src="Assets/Images/ArchmagesLedger.png" alt="The Archmage's Ledger" class="project-detail-img"
+              data-video="Assets/Videos/ArchmagesLedger.mp4" />
+            <div class="project-detail-meta">
+              <h2>The Archmage's Ledger</h2>
+              <p class="project-detail-badge">Hobby / For Fun – OOP PHP</p>
+              <div class="project-detail-tech">
+                <span>PHP (OOP)</span><span>MySQL</span><span>SQLite</span><span>HTML5</span><span>CSS3</span>
+              </div>
+              <div class="project-detail-links">
+                <a href="https://github.com/MarckJedrickMabalot/The-Archmage-s-Ledger" target="_blank"
+                  class="project-detail-link"><i class="bi bi-github"></i> Repo</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template
+            class="project-detail-content-tpl">
+            <div class="project-detail-content">
+              <p>A high-fantasy single-page web application blending complex data processing with an immersive
+                interface. Built to demonstrate mastery of core OOP principles in PHP across four functional
+                computational modules.</p>
+              <h3>OOP Concepts Demonstrated</h3>
+              <ul>
+                <li>Classes and Objects</li>
+                <li>Inheritance and Polymorphism</li>
+                <li>Encapsulation</li>
+                <li>Abstract Classes and Interfaces</li>
+                <li>Design Patterns implementation</li>
+              </ul>
+            </div>
+          </template>
+        </div>
 
-  // Video Modal
-  const videoModal = document.getElementById('videoModal');
-  const modalVideo = document.getElementById('modalVideo');
-  const videoModalClose = document.getElementById('videoModalClose');
+        <div class="project-detail-card reveal" data-category="personal">
+          <div class="project-detail-header">
+            <img src="Assets/Images/GameForGF.jpg" alt="Comsoc Night" class="project-detail-img"
+              data-video="Assets/Videos/ComsocNight.mp4" />
+            <div class="project-detail-meta">
+              <h2>Comsoc Night</h2>
+              <p class="project-detail-badge">❤️ Gift for my Girlfriend</p>
+              <div class="project-detail-tech">
+                <span>Python</span><span>Pygame</span><span>Game Dev</span>
+              </div>
+              <div class="project-detail-links">
+                <a href="#" class="project-detail-link disabled"><i class="bi bi-github"></i> Repo</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template
+            class="project-detail-content-tpl">
+            <div class="project-detail-content">
+              <p>A Pygame recreation of how me and my girlfriend first met — a personal, heartfelt game built as a gift,
+                recreating the magic of Comsoc Night: The Grand ExiT.</p>
+            </div>
+          </template>
+        </div>
 
-  document.querySelectorAll('.project-detail-img[data-video]').forEach(img => {
-    img.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const videoSrc = img.getAttribute('data-video');
-      modalVideo.src = videoSrc;
-      videoModal.style.display = 'flex';
-      modalVideo.play();
-    });
-  });
+        <div class="project-detail-card reveal" data-category="coursework">
+          <div class="project-detail-header">
+            <img src="Assets/Images/cybersphere.png" alt="Cybersphere" class="project-detail-img"
+              data-video="Assets/Videos/CyberSphere.mp4" />
+            <div class="project-detail-meta">
+              <h2>Cybersphere</h2>
+              <p class="project-detail-badge">Final Project – OOP, Integrated Programming & Info Management</p>
+              <div class="project-detail-tech">
+                <span>PHP</span><span>MySQL</span>
+              </div>
+              <div class="project-detail-links">
+                <a href="https://github.com/Yosh-Fukuhara/project" target="_blank" class="project-detail-link"><i
+                    class="bi bi-github"></i> Repo</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card-expand"><span>View details</span><i class="bi bi-arrow-right"></i></div><template
+            class="project-detail-content-tpl">
+            <div class="project-detail-content">
+              <p>A web-based platform that combines social networking, recruitment, technical skill validation, and
+                e-commerce into one integrated ecosystem designed for the Philippine technology and cybersecurity
+                industry. Built to simplify how tech professionals connect with recruiters and companies.</p>
+              <h3>Key Features</h3>
+              <ul>
+                <li>Social networking and profiles</li>
+                <li>Job recruitment and applications</li>
+                <li>Technical skill validation and assessments</li>
+                <li>Integrated e-commerce for tech products/services</li>
+                <li>Tailored for Philippine tech/cybersecurity industry</li>
+              </ul>
+              <h3>Credits</h3>
+              <ul>
+                <li><strong>Marck Jedrick S. Mabalot</strong> - Project Management, Frontend Design, QA Testing, Paper
+                </li>
+                <li>Gerald P. Limutos - QA Testing, Database, Research</li>
+                <li>Emmanuel Managa - Database Schema</li>
+                <li>Yoshinobu Fukuhara - Lead Design</li>
+                <li>Francis Saavedra - Documentation</li>
+              </ul>
+            </div>
+          </template>
+        </div>
 
-  videoModalClose.addEventListener('click', closeModal);
-  videoModal.addEventListener('click', (e) => {
-    if (e.target === videoModal) {
-      closeModal();
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Designed & Built by <a href="index.html">Marck Jedrick S. Mabalot</a></p>
+    <p style="margin-top:.4rem;">mabalotmarckjedrick@gmail.com</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('portfolioTheme');
+    if (savedTheme) {
+      document.documentElement.classList.add(savedTheme);
+      updateThemeIcon();
     }
-  });
 
-  function closeModal() {
-    videoModal.style.display = 'none';
-    modalVideo.pause();
-    modalVideo.src = '';
-  }
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('light-mode');
+      const isLight = document.documentElement.classList.contains('light-mode');
+      localStorage.setItem('portfolioTheme', isLight ? 'light-mode' : '');
+      updateThemeIcon();
+    });
 
-  // Project Filter Bar
-  const filterBtns = document.querySelectorAll('.project-filter-btn');
-  const projectCards = document.querySelectorAll('.project-detail-card');
+    function updateThemeIcon() {
+      themeToggle.innerHTML = document.documentElement.classList.contains('light-mode')
+        ? '<i class="bi bi-sun"></i>'
+        : '<i class="bi bi-moon"></i>';
+    }
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.getAttribute('data-filter');
-      projectCards.forEach(card => {
-        const matches = filter === 'all' || card.getAttribute('data-category') === filter;
-        card.classList.toggle('hidden', !matches);
+    // Navbar Toggle
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Video Modal
+    const videoModal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const videoModalClose = document.getElementById('videoModalClose');
+
+    document.querySelectorAll('.project-detail-img[data-video]').forEach(img => {
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const videoSrc = img.getAttribute('data-video');
+        modalVideo.src = videoSrc;
+        videoModal.style.display = 'flex';
+        modalVideo.play();
       });
     });
-  });
 
-  // Project Detail Modal — opens full description/features/credits for a card
-  const projectModal = document.getElementById('projectModal');
-  const projectModalClose = document.getElementById('projectModalClose');
-  const projectModalImg = document.getElementById('projectModalImg');
-  const projectModalTitle = document.getElementById('projectModalTitle');
-  const projectModalBadge = document.getElementById('projectModalBadge');
-  const projectModalTech = document.getElementById('projectModalTech');
-  const projectModalLinks = document.getElementById('projectModalLinks');
-  const projectModalContent = document.getElementById('projectModalContent');
-
-  projectCards.forEach(card => {
-    card.addEventListener('click', () => openProjectModal(card));
-    card.setAttribute('tabindex', '0');
-    card.setAttribute('role', 'button');
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openProjectModal(card);
+    videoModalClose.addEventListener('click', closeModal);
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) {
+        closeModal();
       }
     });
-    card.querySelectorAll('.project-detail-link').forEach(link => {
-      link.addEventListener('click', (e) => e.stopPropagation());
+
+    function closeModal() {
+      videoModal.style.display = 'none';
+      modalVideo.pause();
+      modalVideo.src = '';
+    }
+
+    // Project Filter Bar
+    const filterBtns = document.querySelectorAll('.project-filter-btn');
+    const projectCards = document.querySelectorAll('.project-detail-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        projectCards.forEach(card => {
+          const matches = filter === 'all' || card.getAttribute('data-category') === filter;
+          card.classList.toggle('hidden', !matches);
+        });
+      });
     });
-  });
 
-  function openProjectModal(card) {
-    const img = card.querySelector('.project-detail-img');
-    const title = card.querySelector('.project-detail-meta h2').textContent;
-    const badge = card.querySelector('.project-detail-badge').textContent;
-    const tech = card.querySelector('.project-detail-tech').innerHTML;
-    const links = card.querySelector('.project-detail-links').innerHTML;
-    const tpl = card.querySelector('.project-detail-content-tpl');
+    // Project Detail Modal — opens full description/features/credits for a card
+    const projectModal = document.getElementById('projectModal');
+    const projectModalClose = document.getElementById('projectModalClose');
+    const projectModalImg = document.getElementById('projectModalImg');
+    const projectModalTitle = document.getElementById('projectModalTitle');
+    const projectModalBadge = document.getElementById('projectModalBadge');
+    const projectModalTech = document.getElementById('projectModalTech');
+    const projectModalLinks = document.getElementById('projectModalLinks');
+    const projectModalContent = document.getElementById('projectModalContent');
 
-    projectModalImg.src = img.src;
-    projectModalImg.alt = title;
-    projectModalTitle.textContent = title;
-    projectModalBadge.textContent = badge;
-    projectModalTech.innerHTML = tech;
-    projectModalLinks.innerHTML = links;
-    projectModalContent.innerHTML = tpl ? tpl.innerHTML : '';
+    projectCards.forEach(card => {
+      card.addEventListener('click', () => openProjectModal(card));
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openProjectModal(card);
+        }
+      });
+      card.querySelectorAll('.project-detail-link').forEach(link => {
+        link.addEventListener('click', (e) => e.stopPropagation());
+      });
+    });
 
-    projectModal.classList.add('open');
-    document.body.classList.add('modal-locked');
-  }
+    function openProjectModal(card) {
+      const img = card.querySelector('.project-detail-img');
+      const title = card.querySelector('.project-detail-meta h2').textContent;
+      const badge = card.querySelector('.project-detail-badge').textContent;
+      const tech = card.querySelector('.project-detail-tech').innerHTML;
+      const links = card.querySelector('.project-detail-links').innerHTML;
+      const tpl = card.querySelector('.project-detail-content-tpl');
 
-  function closeProjectModal() {
-    projectModal.classList.remove('open');
-    document.body.classList.remove('modal-locked');
-  }
+      projectModalImg.src = img.src;
+      projectModalImg.alt = title;
+      projectModalTitle.textContent = title;
+      projectModalBadge.textContent = badge;
+      projectModalTech.innerHTML = tech;
+      projectModalLinks.innerHTML = links;
+      projectModalContent.innerHTML = tpl ? tpl.innerHTML : '';
 
-  projectModalImg.addEventListener('click', () => {
-    const videoSrc = document.querySelector(
-      `.project-detail-img[alt="${CSS.escape(projectModalTitle.textContent)}"]`
-    )?.getAttribute('data-video');
-    if (videoSrc) {
-      closeProjectModal();
-      modalVideo.src = videoSrc;
-      videoModal.style.display = 'flex';
-      modalVideo.play();
+      projectModal.classList.add('open');
+      document.body.classList.add('modal-locked');
     }
-  });
 
-  projectModalClose.addEventListener('click', closeProjectModal);
-  projectModal.addEventListener('click', (e) => {
-    if (e.target === projectModal) closeProjectModal();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeProjectModal();
-      closeModal();
+    function closeProjectModal() {
+      projectModal.classList.remove('open');
+      document.body.classList.remove('modal-locked');
     }
-  });
-</script>
+
+    projectModalImg.addEventListener('click', () => {
+      const videoSrc = document.querySelector(
+        `.project-detail-img[alt="${CSS.escape(projectModalTitle.textContent)}"]`
+      )?.getAttribute('data-video');
+      if (videoSrc) {
+        closeProjectModal();
+        modalVideo.src = videoSrc;
+        videoModal.style.display = 'flex';
+        modalVideo.play();
+      }
+    });
+
+    projectModalClose.addEventListener('click', closeProjectModal);
+    projectModal.addEventListener('click', (e) => {
+      if (e.target === projectModal) closeProjectModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeProjectModal();
+        closeModal();
+      }
+    });
+  </script>
 </body>
+
 </html>
